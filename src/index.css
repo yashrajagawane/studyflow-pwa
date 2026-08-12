@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+html { min-width: 320px; background: #0b0911; }
+body { min-width: 320px; margin: 0; }
