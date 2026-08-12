@@ -159,6 +159,8 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+| Phase 7 schedule commit | ✅ `7536e89 Add persisted study schedule` |
+
 ## Phase 7 delivered files
 
 - `src/data/scheduleConstants.js` — schedule defaults
