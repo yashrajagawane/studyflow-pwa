@@ -6,11 +6,11 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 4 — Task domain and CRUD |
-| Completed phases | Phase 0, Phase 1, Phase 2, and Phase 3 |
-| Overall progress | 4 of 17 roadmap phases complete — approximately 24% |
+| Active work | Preparing to start Phase 5 — Shared state and local persistence |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, and Phase 4 |
+| Overall progress | 5 of 17 roadmap phases complete — approximately 29% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
-| Task CRUD | Not implemented |
+| Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Not implemented |
 | Real progress calculations | Not implemented |
 | Schedule | Not implemented |
@@ -28,7 +28,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 1 — Project initialization | ✅ Complete | React/Vite project, Tailwind, npm scripts, metadata, README foundation, lint/build checks, and initial Git commit exist. |
 | Phase 2 — Design system and application shell | ✅ Complete | Extracted reusable `AppShell`, `Sidebar`, `PageHeader`, `MobileNavigation`, `NavButton`, and `ComingSoon` components. Navigation state and active-page behavior remain intact. |
 | Phase 3 — Dashboard information architecture | ✅ Complete | Dashboard was extracted into a dedicated page with reusable stat cards, empty states, weekly progress preview, upcoming/overdue metrics, and a data interface ready for planner state. |
-| Phase 4 — Task domain and CRUD | ⬜ Not started | Forms, validation, task cards, filters, edit, delete, and completion actions are pending. |
+| Phase 4 — Task domain and CRUD | ✅ Complete | Added task model/constants, validation, add/edit form, task cards, completion toggle, delete confirmation, filters, deadlines, subject, priority, notes, and in-memory state. |
 | Phase 5 — Shared state and local persistence | ⬜ Not started | Context/hooks, storage adapter, schema versioning, and recovery handling are pending. |
 | Phase 6 — Real progress and analytics foundation | ⬜ Not started | Daily/weekly calculations and the Progress page are pending. |
 | Phase 7 — Study schedule domain | ⬜ Not started | Schedule sessions, validation, ordering, and persistence are pending. |
@@ -80,7 +80,7 @@ This living document records what is actually implemented and verified in the re
 - `src/components/progress/StatCard.jsx` renders one reusable metric card.
 - `src/components/progress/WeeklyProgressPreview.jsx` renders the weekly activity preview.
 - `src/components/common/EmptyState.jsx` provides a reusable empty-state action pattern.
-- Dashboard metrics are currently an explicit empty-data model; task-derived values will be connected in Phase 4 and Phase 5.
+- Dashboard metrics are connected to the in-memory task list; they will survive refresh after Phase 5 persistence.
 
 ### Verification already completed
 
@@ -93,17 +93,29 @@ This living document records what is actually implemented and verified in the re
 | Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
 | Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
 | Phase 3 dashboard commit | ✅ `eea59ab Build dashboard information architecture` |
+| Phase 4 task workflow commit | ✅ Pending in this checkpoint |
 
 ## What is deliberately not implemented yet
 
 - No tasks can be created, edited, completed, or deleted.
-- No localStorage data is read or written.
-- Dashboard statistics are not connected to data.
+- No localStorage data is read or written yet.
+- Dashboard summary metrics currently calculate from in-memory task state and reset on refresh.
 - No schedule sessions exist.
 - No settings or clear-data confirmation exists.
 - No PWA manifest, icons, service worker, or offline caching exists.
 - No final GitHub push or Vercel deployment has been verified.
 - The Vite starter assets still need cleanup later.
+
+## Phase 4 delivered files
+
+- `src/pages/Tasks.jsx` — task workspace, filters, and form coordination
+- `src/components/tasks/TaskForm.jsx` — validated add/edit form
+- `src/components/tasks/TaskCard.jsx` — task status, metadata, and actions
+- `src/components/tasks/TaskList.jsx` — filtered task list and empty states
+- `src/data/taskConstants.js` — subjects, priorities, filters, and default form data
+- `src/utils/dateUtils.js` — local date, deadline, and date-label helpers
+- `src/utils/validation.js` — task validation rules
+- `src/App.jsx` — in-memory task state and dashboard metric integration
 
 ## Current risks and decisions
 
@@ -119,7 +131,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 4 by implementing the task domain: task data shape, validation, add/edit form, task cards, completion toggle, delete confirmation, and task filters. Persistence will be added in Phase 5 after the in-memory workflow is stable.
+Start Phase 5 by adding a centralized storage service and shared planner context/hooks. Persist task creation, editing, completion, and deletion safely across refreshes and browser reopening.
 
 ## Completion rule
 
