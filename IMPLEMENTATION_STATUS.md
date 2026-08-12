@@ -6,16 +6,16 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 10 — PWA packaging and offline architecture |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, and Phase 9 |
-| Overall progress | 10 of 17 roadmap phases complete — approximately 59% |
+| Active work | Preparing to start Phase 11 — PWA and offline verification |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, and Phase 10 |
+| Overall progress | 11 of 17 roadmap phases complete — approximately 65% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
-| PWA/offline support | Not implemented |
+| PWA/offline support | Packaged; verification is next |
 | GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
 | Vercel | Not deployed |
 | Cost | Free stack selected; no paid service is required for the MVP |
@@ -34,7 +34,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 7 — Study schedule domain | ✅ Complete | Added persisted schedule sessions, date/time validation, sorted display, add/edit/delete actions, and responsive schedule UI. |
 | Phase 8 — Settings, recovery, and privacy | ✅ Complete | Added Settings page, local-only data explanation, privacy information, safe clear-all confirmation, and shared task/session reset actions. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ✅ Complete | Added centralized focus-visible styling, larger touch targets, dark date/time controls, reduced-motion safeguards, modal focus management, body-scroll locking, and responsive QA checks. |
-| Phase 10 — PWA packaging and offline architecture | ⬜ Not started | `vite-plugin-pwa`, manifest, icons, service worker, and update strategy are pending. |
+| Phase 10 — PWA packaging and offline architecture | ✅ Complete | Added `vite-plugin-pwa`, standalone manifest, original scalable icon, auto-update registration, app-shell precaching, navigation fallback, and outdated-cache cleanup. |
 | Phase 11 — Automated and manual testing | ⬜ Not started | Acceptance checklist and utility tests are pending. |
 | Phase 12 — Production cleanup and performance | ⬜ Not started | Starter assets, dead code, bundle review, and final metadata cleanup are pending. |
 | Phase 13 — GitHub repository and collaboration workflow | 🟡 Partially ready | Local Git history, `.gitignore`, and README foundation exist. Final README, clean-clone verification, and push confirmation remain. |
@@ -230,6 +230,30 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+## Phase 10 delivered files
+
+- `vite.config.js` — PWA plugin, manifest, Workbox patterns, navigation fallback, and update strategy
+- `src/main.jsx` — service-worker registration
+- `public/icons/pwa-icon.svg` — original scalable Study Planner icon
+- `index.html` — manifest and Apple touch icon metadata
+- `package.json` / `package-lock.json` — `vite-plugin-pwa` dependency
+
+## Phase 10 verification
+
+| Test | Result |
+| --- | --- |
+| Production manifest generated | ✅ `dist/manifest.webmanifest` |
+| Standalone display configured | ✅ Passed; `display: standalone` |
+| Root start URL and scope | ✅ Passed; `/` |
+| 192×192 and 512×512 icon declarations | ✅ Passed; scalable SVG icon declared for both sizes |
+| Service worker generated | ✅ `dist/sw.js` |
+| Workbox runtime generated | ✅ Passed |
+| App-shell precache generated | ✅ Passed; 10 entries |
+| Navigation fallback configured | ✅ Passed; `/index.html` with `/api/` denylist |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -244,7 +268,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 10 by adding the installable PWA manifest, original app icons, service worker, update behavior, and offline app-shell caching.
+Start Phase 11 by testing the production preview with the browser Application panel, service-worker registration, manifest loading, install behavior where supported, and offline reload of the cached app shell.
 
 ## Completion rule
 
