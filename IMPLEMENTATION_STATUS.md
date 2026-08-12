@@ -6,14 +6,14 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 7 — Study schedule domain |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, and Phase 6 |
-| Overall progress | 7 of 17 roadmap phases complete — approximately 41% |
+| Active work | Preparing to start Phase 8 — Settings, recovery, and privacy |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, and Phase 7 |
+| Overall progress | 8 of 17 roadmap phases complete — approximately 47% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
-| Schedule | Not implemented |
+| Schedule | Implemented with local persistence |
 | Settings/reset safety | Not implemented |
 | PWA/offline support | Not implemented |
 | GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
@@ -31,7 +31,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 4 — Task domain and CRUD | ✅ Complete | Added task model/constants, validation, add/edit form, task cards, completion toggle, delete confirmation, filters, deadlines, subject, priority, notes, and in-memory state. |
 | Phase 5 — Shared state and local persistence | ✅ Complete | Added safe storage adapter, schema versioning, shared context/hooks, persistence for task mutations, malformed-data recovery, and storage-unavailable feedback. |
 | Phase 6 — Real progress and analytics foundation | ✅ Complete | Added centralized daily/week calculations, connected dashboard weekly values, and added a Progress page with daily, weekly, upcoming, and overdue metrics. |
-| Phase 7 — Study schedule domain | ⬜ Not started | Schedule sessions, validation, ordering, and persistence are pending. |
+| Phase 7 — Study schedule domain | ✅ Complete | Added persisted schedule sessions, date/time validation, sorted display, add/edit/delete actions, and responsive schedule UI. |
 | Phase 8 — Settings, recovery, and privacy | ⬜ Not started | Settings, local-data explanation, reset confirmation, and recovery UI are pending. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ⬜ Not started | Initial styling exists, but full feature-level QA is intentionally deferred until the app is functional. |
 | Phase 10 — PWA packaging and offline architecture | ⬜ Not started | `vite-plugin-pwa`, manifest, icons, service worker, and update strategy are pending. |
@@ -159,6 +159,29 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+## Phase 7 delivered files
+
+- `src/data/scheduleConstants.js` — schedule defaults
+- `src/utils/scheduleValidation.js` — session validation rules
+- `src/hooks/useSchedule.js` — persisted schedule actions
+- `src/components/schedule/ScheduleForm.jsx` — add/edit session form
+- `src/components/schedule/ScheduleCard.jsx` — session display and actions
+- `src/pages/Schedule.jsx` — schedule page and sorted list
+- `src/context/StudyPlannerContext.jsx` — shared task and schedule state
+- `src/App.jsx` — Schedule navigation and actions
+
+## Phase 7 verification
+
+| Test | Result |
+| --- | --- |
+| Open Schedule page | ✅ Passed in local browser |
+| Create study session | ✅ Passed in local browser |
+| Reload and find session | ✅ Passed in local browser |
+| Date/time validation | ✅ Implemented |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -173,7 +196,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 7 by implementing schedule sessions with date/time validation, local persistence, sorted display, and add/edit/delete actions.
+Start Phase 8 by implementing Settings, safe clear-data confirmation, local-data explanation, storage recovery messaging, and privacy-focused MVP information.
 
 ## Completion rule
 

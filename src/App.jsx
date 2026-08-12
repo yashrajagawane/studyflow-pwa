@@ -7,11 +7,12 @@ import { useStudyPlanner } from './hooks/useStudyPlanner'
 import { Dashboard } from './pages/Dashboard'
 import { Tasks } from './pages/Tasks'
 import { Progress } from './pages/Progress'
+import { Schedule } from './pages/Schedule'
 import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
-  const { tasks, createTask, updateTask, toggleTask, deleteTask, storageError } = useStudyPlanner()
+  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, storageError } = useStudyPlanner()
 
   const today = useMemo(
     () => new Intl.DateTimeFormat('en-IN', {
@@ -39,6 +40,10 @@ function App() {
         }} />
       ) : activePage === 'Progress' ? (
         <Progress tasks={tasks} onAddTask={() => setActivePage('Tasks')} />
+      ) : activePage === 'Schedule' ? (
+        <Schedule sessions={sessions} onCreate={createSession} onUpdate={updateSession} onDelete={(session) => {
+          if (window.confirm(`Delete “${session.title}”?`)) deleteSession(session.id)
+        }} />
       ) : (
         <ComingSoon page={activePage} />
       )}
