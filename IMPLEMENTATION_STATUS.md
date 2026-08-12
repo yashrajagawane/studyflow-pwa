@@ -6,10 +6,10 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 12 — Production cleanup and performance |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, and Phase 11 |
-| Overall progress | 12 of 17 roadmap phases complete — approximately 71% |
-| Functional MVP | Not complete; current app is a visual foundation/prototype |
+| Active work | Preparing to start Phase 13 — GitHub repository and collaboration workflow |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, and Phase 12 |
+| Overall progress | 13 of 17 roadmap phases complete — approximately 76% |
+| Functional MVP | Feature-complete local-first MVP; release, GitHub, deployment, and production acceptance remain |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
@@ -36,7 +36,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 9 — UX polish, accessibility, and responsive QA | ✅ Complete | Added centralized focus-visible styling, larger touch targets, dark date/time controls, reduced-motion safeguards, modal focus management, body-scroll locking, and responsive QA checks. |
 | Phase 10 — PWA packaging and offline architecture | ✅ Complete | Added `vite-plugin-pwa`, standalone manifest, original scalable icon, auto-update registration, app-shell precaching, navigation fallback, and outdated-cache cleanup. |
 | Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified. Actual installed/offline launch requires the public HTTPS deployment and remains in Phase 15 acceptance. |
-| Phase 12 — Production cleanup and performance | ⬜ Not started | Starter assets, dead code, bundle review, and final metadata cleanup are pending. |
+| Phase 12 — Production cleanup and performance | ✅ Complete | Removed unused Vite starter assets, switched to the original PWA icon, reduced PWA precache output, refreshed README/release metadata, and verified dependency/build health. |
 | Phase 13 — GitHub repository and collaboration workflow | 🟡 Partially ready | Local Git history, `.gitignore`, and README foundation exist. Final README, clean-clone verification, and push confirmation remain. |
 | Phase 14 — Free Vercel deployment | ⬜ Not started | Repository connection, production build, and live URL are pending. |
 | Phase 15 — Production acceptance and handoff | ⬜ Not started | Public URL, PWA installation, offline, and final acceptance testing are pending. |
@@ -272,6 +272,26 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+## Phase 12 delivered changes
+
+- Removed unused Vite starter assets: `public/icons.svg`, `public/favicon.svg`, and unused files under `src/assets/`.
+- Switched the browser favicon to the original `public/icons/pwa-icon.svg`.
+- Reduced generated PWA precache output from 10 entries to 7 intentional entries.
+- Updated `package.json` to release version `0.1.0` and refreshed lockfile metadata.
+- Replaced the stale Phase 1 README with current feature, privacy, PWA, and deployment information.
+
+## Phase 12 verification
+
+| Test | Result |
+| --- | --- |
+| Unused starter asset audit | ✅ Passed; only `public/icons/pwa-icon.svg` remains as a source asset |
+| Top-level dependency tree | ✅ Passed; all declared dependencies are installed |
+| Release metadata | ✅ Version `0.1.0` |
+| PWA production output | ✅ 7 intentional precache entries |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -286,7 +306,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 12 by removing starter assets and dead code, reviewing bundle/dependency weight, improving production metadata, and completing a release-quality cleanup pass.
+Start Phase 13 by finalizing the GitHub-ready repository, checking the clean clone workflow, completing README/repository documentation, and pushing the project to GitHub.
 
 ## Completion rule
 

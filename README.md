@@ -4,18 +4,18 @@ A free, mobile-first student productivity PWA for planning tasks, study sessions
 
 ## Current status
 
-Phase 1 is complete: the React/Vite project is initialized with Tailwind CSS and the first responsive application shell.
+The core local-first MVP is implemented through Phase 12. Tasks, progress, study sessions, settings, persistence, accessibility polish, and PWA packaging are complete. GitHub preparation and free Vercel deployment are next.
 
-The dashboard UI is intentionally using empty data until task management and localStorage persistence are added in the next phases.
+## Features
 
-## Planned features
-
-- Task management with subjects, priorities, deadlines, and notes
-- Daily and weekly progress tracking
-- Simple study schedule
-- Local browser storage
-- Installable PWA with basic offline support
-- Free deployment through GitHub and Vercel
+- Create, edit, complete, filter, and delete study tasks
+- Subjects, priorities, deadlines, notes, and overdue indicators
+- Daily and weekly progress calculated from real task data
+- Add, edit, sort, and delete timed study sessions
+- Browser localStorage persistence across refreshes and reopening
+- Safe clear-data confirmation
+- Responsive dark UI for desktop and mobile
+- Installable PWA with service-worker app-shell caching
 
 ## Tech stack
 
@@ -31,10 +31,21 @@ npm run dev
 Production verification:
 
 ```bash
+npm run lint
 npm run build
 npm run preview
 ```
 
+Open the preview URL in a supported browser to inspect the production PWA manifest and service worker. Installation is best tested from the final HTTPS Vercel URL.
+
+## Data and privacy
+
+The MVP does not use accounts, analytics, a backend, or external APIs. Tasks and sessions stay in the browser's local storage on the current device. Clearing data is available in Settings and requires confirmation.
+
+## Free deployment
+
+The planned free deployment path is GitHub → Vercel free tier → public `vercel.app` URL. No paid domain, database, API, or Google Play Store publication is required.
+
 ## Roadmap
 
-The MVP will remain backend-free and free to deploy. Supabase synchronization and an AI study assistant are reserved for future versions.
+GitHub preparation, Vercel deployment, production acceptance, screenshots, and final documentation are next. Supabase synchronization and an AI study assistant are reserved for future versions.

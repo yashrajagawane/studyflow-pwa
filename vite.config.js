@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons/*.svg'],
+      includeAssets: ['icons/*.svg'],
       manifest: {
         name: 'Student Study Planner',
         short_name: 'Study Planner',
