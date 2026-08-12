@@ -109,6 +109,8 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+| Phase 8 settings commit | ✅ `56f72c1 Add settings and safe data reset` |
+
 ## What is deliberately not implemented yet
 
 - Task management is implemented; persistence is now backed by localStorage.
