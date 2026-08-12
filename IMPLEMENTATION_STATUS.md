@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 3 — Dashboard information architecture |
-| Completed phases | Phase 0, Phase 1, and Phase 2 |
-| Overall progress | 3 of 17 roadmap phases complete — approximately 18% |
+| Active work | Preparing to start Phase 4 — Task domain and CRUD |
+| Completed phases | Phase 0, Phase 1, Phase 2, and Phase 3 |
+| Overall progress | 4 of 17 roadmap phases complete — approximately 24% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Not implemented |
 | localStorage persistence | Not implemented |
@@ -27,7 +27,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 0 — Product analysis and architecture | ✅ Complete | Requirements, MVP boundaries, free stack, data model, quality rules, and roadmap are documented. |
 | Phase 1 — Project initialization | ✅ Complete | React/Vite project, Tailwind, npm scripts, metadata, README foundation, lint/build checks, and initial Git commit exist. |
 | Phase 2 — Design system and application shell | ✅ Complete | Extracted reusable `AppShell`, `Sidebar`, `PageHeader`, `MobileNavigation`, `NavButton`, and `ComingSoon` components. Navigation state and active-page behavior remain intact. |
-| Phase 3 — Dashboard information architecture | 🟡 Visual prototype only | Current dashboard has greeting, empty states, summary cards, and weekly placeholder bars. It is not connected to real task data. |
+| Phase 3 — Dashboard information architecture | ✅ Complete | Dashboard was extracted into a dedicated page with reusable stat cards, empty states, weekly progress preview, upcoming/overdue metrics, and a data interface ready for planner state. |
 | Phase 4 — Task domain and CRUD | ⬜ Not started | Forms, validation, task cards, filters, edit, delete, and completion actions are pending. |
 | Phase 5 — Shared state and local persistence | ⬜ Not started | Context/hooks, storage adapter, schema versioning, and recovery handling are pending. |
 | Phase 6 — Real progress and analytics foundation | ⬜ Not started | Daily/weekly calculations and the Progress page are pending. |
@@ -74,6 +74,14 @@ This living document records what is actually implemented and verified in the re
 - `src/components/common/ComingSoon.jsx` provides a consistent placeholder view.
 - `src/data/navigation.js` is the single navigation definition used by desktop and mobile.
 
+### Phase 3 dashboard structure
+
+- `src/pages/Dashboard.jsx` owns dashboard composition and its data interface.
+- `src/components/progress/StatCard.jsx` renders one reusable metric card.
+- `src/components/progress/WeeklyProgressPreview.jsx` renders the weekly activity preview.
+- `src/components/common/EmptyState.jsx` provides a reusable empty-state action pattern.
+- Dashboard metrics are currently an explicit empty-data model; task-derived values will be connected in Phase 4 and Phase 5.
+
 ### Verification already completed
 
 | Check | Result |
@@ -84,6 +92,7 @@ This living document records what is actually implemented and verified in the re
 | Initial app-shell commit | ✅ `c195cd2 Initial Study Planner app shell` |
 | Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
 | Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
+| Phase 3 dashboard commit | ✅ Pending in this checkpoint |
 
 ## What is deliberately not implemented yet
 
@@ -110,7 +119,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 3 by extracting the dashboard into focused components and connecting its cards, today's tasks, and weekly progress areas to shared planner state. The first functional data workflow will then begin with task management.
+Start Phase 4 by implementing the task domain: task data shape, validation, add/edit form, task cards, completion toggle, delete confirmation, and task filters. Persistence will be added in Phase 5 after the in-memory workflow is stable.
 
 ## Completion rule
 
