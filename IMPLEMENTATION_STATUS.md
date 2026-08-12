@@ -93,7 +93,7 @@ This living document records what is actually implemented and verified in the re
 | Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
 | Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
 | Phase 3 dashboard commit | ✅ `eea59ab Build dashboard information architecture` |
-| Phase 4 task workflow commit | ✅ Pending in this checkpoint |
+| Phase 4 task workflow commit | ✅ `5aec6c6 Add in-memory task management` |
 
 ## What is deliberately not implemented yet
 
