@@ -291,6 +291,7 @@ This living document records what is actually implemented and verified in the re
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
+| Phase 12 cleanup commit | ✅ `9ca4e16 Clean up production release assets` |
 
 ## Current risks and decisions
 
