@@ -83,7 +83,7 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | Initial app-shell commit | ✅ `c195cd2 Initial Study Planner app shell` |
 | Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
-| Phase 2 componentization commit | ✅ Pending in this checkpoint |
+| Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
 
 ## What is deliberately not implemented yet
 
