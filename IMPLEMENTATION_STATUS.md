@@ -6,16 +6,16 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 11 — PWA and offline verification |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, and Phase 10 |
-| Overall progress | 11 of 17 roadmap phases complete — approximately 65% |
+| Active work | Preparing to start Phase 12 — Production cleanup and performance |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, and Phase 11 |
+| Overall progress | 12 of 17 roadmap phases complete — approximately 71% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
-| PWA/offline support | Packaged; verification is next |
+| PWA/offline support | Packaged and production-preview verified; public HTTPS offline test remains |
 | GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
 | Vercel | Not deployed |
 | Cost | Free stack selected; no paid service is required for the MVP |
@@ -35,7 +35,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 8 — Settings, recovery, and privacy | ✅ Complete | Added Settings page, local-only data explanation, privacy information, safe clear-all confirmation, and shared task/session reset actions. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ✅ Complete | Added centralized focus-visible styling, larger touch targets, dark date/time controls, reduced-motion safeguards, modal focus management, body-scroll locking, and responsive QA checks. |
 | Phase 10 — PWA packaging and offline architecture | ✅ Complete | Added `vite-plugin-pwa`, standalone manifest, original scalable icon, auto-update registration, app-shell precaching, navigation fallback, and outdated-cache cleanup. |
-| Phase 11 — Automated and manual testing | ⬜ Not started | Acceptance checklist and utility tests are pending. |
+| Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified. Actual installed/offline launch requires the public HTTPS deployment and remains in Phase 15 acceptance. |
 | Phase 12 — Production cleanup and performance | ⬜ Not started | Starter assets, dead code, bundle review, and final metadata cleanup are pending. |
 | Phase 13 — GitHub repository and collaboration workflow | 🟡 Partially ready | Local Git history, `.gitignore`, and README foundation exist. Final README, clean-clone verification, and push confirmation remain. |
 | Phase 14 — Free Vercel deployment | ⬜ Not started | Repository connection, production build, and live URL are pending. |
@@ -255,6 +255,23 @@ This living document records what is actually implemented and verified in the re
 | `git diff --check` | ✅ Passed |
 | Phase 10 PWA commit | ✅ `9aecd78 Package app as an installable PWA` |
 
+## Phase 11 verification
+
+| Test | Result |
+| --- | --- |
+| Production preview starts | ✅ Passed at `http://localhost:4173/` |
+| Production app shell loads | ✅ Passed in local browser |
+| Manifest link is singular | ✅ Passed after removing duplicate injection |
+| Manifest is reachable | ✅ Passed via production preview |
+| Manifest is standalone with two icons | ✅ Passed via HTTP verification |
+| Service worker is reachable | ✅ Passed via production preview |
+| Service worker contains precache logic | ✅ Passed via HTTP verification |
+| Service worker contains navigation fallback | ✅ Passed via HTTP verification |
+| Actual offline toggle/registration inspection | ⚠️ Not exposed by this browser environment; reserved for public HTTPS acceptance testing |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -269,7 +286,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 11 by testing the production preview with the browser Application panel, service-worker registration, manifest loading, install behavior where supported, and offline reload of the cached app shell.
+Start Phase 12 by removing starter assets and dead code, reviewing bundle/dependency weight, improving production metadata, and completing a release-quality cleanup pass.
 
 ## Completion rule
 
