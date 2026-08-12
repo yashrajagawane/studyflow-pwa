@@ -33,6 +33,7 @@ button { font: inherit; }
 .tip-card p { margin: 4px 0 0; color: #867b93; font-size: 11px; line-height: 1.45; }
 .version-label { margin: 0 12px; color: #665d70; font-size: 10px; }
 .main-content { width: min(100%, 1180px); padding: 46px clamp(24px, 5vw, 72px) 60px; }
+.storage-notice { margin: -22px 0 20px; padding: 10px 13px; border: 1px solid #6b4c37; border-radius: 9px; color: #f0c58e; background: #291c16; font-size: 12px; line-height: 1.45; }
 .topbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 42px; }
 .eyebrow { margin: 0 0 10px; }
 h1, h2, h3, p { margin-top: 0; }

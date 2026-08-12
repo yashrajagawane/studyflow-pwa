@@ -94,7 +94,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
 | Phase 3 dashboard commit | ✅ `eea59ab Build dashboard information architecture` |
 | Phase 4 task workflow commit | ✅ `5aec6c6 Add in-memory task management` |
-| Phase 5 persistence commit | ✅ Pending in this checkpoint |
+| Phase 5 persistence commit | ✅ `4b8e701 Persist planner tasks locally` |
 
 ## Phase 5 verification
 
