@@ -253,6 +253,7 @@ This living document records what is actually implemented and verified in the re
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
+| Phase 10 PWA commit | ✅ `9aecd78 Package app as an installable PWA` |
 
 ## Current risks and decisions
 
