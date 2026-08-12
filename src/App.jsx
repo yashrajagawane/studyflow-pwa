@@ -1,14 +1,16 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 import { ComingSoon } from './components/common/ComingSoon'
+import { StorageNotice } from './components/common/StorageNotice'
 import { AppShell } from './components/layout/AppShell'
+import { useStudyPlanner } from './hooks/useStudyPlanner'
 import { Dashboard } from './pages/Dashboard'
 import { Tasks } from './pages/Tasks'
 import { getLocalDateInputValue } from './utils/dateUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
-  const [tasks, setTasks] = useState([])
+  const { tasks, createTask, updateTask, toggleTask, deleteTask, storageError } = useStudyPlanner()
 
   const today = useMemo(
     () => new Intl.DateTimeFormat('en-IN', {
@@ -27,42 +29,18 @@ function App() {
       onNavigate={setActivePage}
       onProfileClick={() => setActivePage('Settings')}
     >
+      <StorageNotice error={storageError} />
       {activePage === 'Dashboard' ? (
         <Dashboard data={getDashboardData(tasks)} onAddTask={() => setActivePage('Tasks')} />
       ) : activePage === 'Tasks' ? (
-        <Tasks
-          tasks={tasks}
-          onCreate={(task) => setTasks((current) => [...current, createTask(task)])}
-          onUpdate={(task) => setTasks((current) => current.map((item) => item.id === task.id ? task : item))}
-          onToggle={(taskId) => setTasks((current) => current.map((task) => task.id === taskId ? toggleTask(task) : task))}
-          onDelete={(task) => {
-            if (window.confirm(`Delete “${task.title}”?`)) setTasks((current) => current.filter((item) => item.id !== task.id))
-          }}
-        />
+        <Tasks tasks={tasks} onCreate={createTask} onUpdate={updateTask} onToggle={toggleTask} onDelete={(task) => {
+          if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
+        }} />
       ) : (
         <ComingSoon page={activePage} />
       )}
     </AppShell>
   )
-}
-
-function createTask(task) {
-  return {
-    ...task,
-    id: crypto.randomUUID(),
-    status: 'pending',
-    createdAt: new Date().toISOString(),
-    completedAt: null,
-  }
-}
-
-function toggleTask(task) {
-  const completed = task.status !== 'completed'
-  return {
-    ...task,
-    status: completed ? 'completed' : 'pending',
-    completedAt: completed ? new Date().toISOString() : null,
-  }
 }
 
 function getDashboardData(tasks) {

@@ -6,12 +6,12 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 5 — Shared state and local persistence |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, and Phase 4 |
-| Overall progress | 5 of 17 roadmap phases complete — approximately 29% |
+| Active work | Preparing to start Phase 6 — Real progress and analytics foundation |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, and Phase 5 |
+| Overall progress | 6 of 17 roadmap phases complete — approximately 35% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
-| localStorage persistence | Not implemented |
+| localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Not implemented |
 | Schedule | Not implemented |
 | Settings/reset safety | Not implemented |
@@ -29,7 +29,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 2 — Design system and application shell | ✅ Complete | Extracted reusable `AppShell`, `Sidebar`, `PageHeader`, `MobileNavigation`, `NavButton`, and `ComingSoon` components. Navigation state and active-page behavior remain intact. |
 | Phase 3 — Dashboard information architecture | ✅ Complete | Dashboard was extracted into a dedicated page with reusable stat cards, empty states, weekly progress preview, upcoming/overdue metrics, and a data interface ready for planner state. |
 | Phase 4 — Task domain and CRUD | ✅ Complete | Added task model/constants, validation, add/edit form, task cards, completion toggle, delete confirmation, filters, deadlines, subject, priority, notes, and in-memory state. |
-| Phase 5 — Shared state and local persistence | ⬜ Not started | Context/hooks, storage adapter, schema versioning, and recovery handling are pending. |
+| Phase 5 — Shared state and local persistence | ✅ Complete | Added safe storage adapter, schema versioning, shared context/hooks, persistence for task mutations, malformed-data recovery, and storage-unavailable feedback. |
 | Phase 6 — Real progress and analytics foundation | ⬜ Not started | Daily/weekly calculations and the Progress page are pending. |
 | Phase 7 — Study schedule domain | ⬜ Not started | Schedule sessions, validation, ordering, and persistence are pending. |
 | Phase 8 — Settings, recovery, and privacy | ⬜ Not started | Settings, local-data explanation, reset confirmation, and recovery UI are pending. |
@@ -80,7 +80,7 @@ This living document records what is actually implemented and verified in the re
 - `src/components/progress/StatCard.jsx` renders one reusable metric card.
 - `src/components/progress/WeeklyProgressPreview.jsx` renders the weekly activity preview.
 - `src/components/common/EmptyState.jsx` provides a reusable empty-state action pattern.
-- Dashboard metrics are connected to the in-memory task list; they will survive refresh after Phase 5 persistence.
+- Dashboard metrics are connected to the persisted task list.
 
 ### Verification already completed
 
@@ -94,12 +94,23 @@ This living document records what is actually implemented and verified in the re
 | Phase 2 componentization commit | ✅ `848afc0 Complete reusable application shell` |
 | Phase 3 dashboard commit | ✅ `eea59ab Build dashboard information architecture` |
 | Phase 4 task workflow commit | ✅ `5aec6c6 Add in-memory task management` |
+| Phase 5 persistence commit | ✅ Pending in this checkpoint |
+
+## Phase 5 verification
+
+| Test | Result |
+| --- | --- |
+| Create task in browser | ✅ Passed |
+| Reload and find task | ✅ Passed |
+| Complete task, reload, open Completed filter | ✅ Passed |
+| `npm run lint` | ✅ Passed with no warnings |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
 
 ## What is deliberately not implemented yet
 
-- No tasks can be created, edited, completed, or deleted.
-- No localStorage data is read or written yet.
-- Dashboard summary metrics currently calculate from in-memory task state and reset on refresh.
+- Task management is implemented; persistence is now backed by localStorage.
+- No schedule sessions exist yet.
 - No schedule sessions exist.
 - No settings or clear-data confirmation exists.
 - No PWA manifest, icons, service worker, or offline caching exists.
@@ -117,6 +128,17 @@ This living document records what is actually implemented and verified in the re
 - `src/utils/validation.js` — task validation rules
 - `src/App.jsx` — in-memory task state and dashboard metric integration
 
+## Phase 5 delivered files
+
+- `src/services/storageService.js` — safe localStorage adapter, keys, and schema version
+- `src/hooks/useLocalStorage.js` — reusable persistence hook
+- `src/hooks/useTasks.js` — task persistence and domain actions
+- `src/hooks/useStudyPlanner.js` — shared planner consumer hook
+- `src/context/studyPlannerContext.js` — shared context definition
+- `src/context/StudyPlannerContext.jsx` — planner provider
+- `src/components/common/StorageNotice.jsx` — unavailable/invalid storage feedback
+- `src/main.jsx` — provider wiring around the app
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -131,7 +153,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 5 by adding a centralized storage service and shared planner context/hooks. Persist task creation, editing, completion, and deletion safely across refreshes and browser reopening.
+Start Phase 6 by extracting date-aware progress calculations into tested utility logic and connecting daily/weekly progress views to the persisted task data.
 
 ## Completion rule
 
