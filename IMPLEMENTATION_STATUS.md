@@ -96,7 +96,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 4 task workflow commit | ✅ `5aec6c6 Add in-memory task management` |
 | Phase 5 persistence commit | ✅ `4b8e701 Persist planner tasks locally` |
 
-| Phase 6 progress commit | ✅ Pending in this checkpoint |
+| Phase 6 progress commit | ✅ `204187f Add real progress analytics` |
 
 ## Phase 5 verification
 
