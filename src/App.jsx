@@ -6,7 +6,8 @@ import { AppShell } from './components/layout/AppShell'
 import { useStudyPlanner } from './hooks/useStudyPlanner'
 import { Dashboard } from './pages/Dashboard'
 import { Tasks } from './pages/Tasks'
-import { getLocalDateInputValue } from './utils/dateUtils'
+import { Progress } from './pages/Progress'
+import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
@@ -36,6 +37,8 @@ function App() {
         <Tasks tasks={tasks} onCreate={createTask} onUpdate={updateTask} onToggle={toggleTask} onDelete={(task) => {
           if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
         }} />
+      ) : activePage === 'Progress' ? (
+        <Progress tasks={tasks} onAddTask={() => setActivePage('Tasks')} />
       ) : (
         <ComingSoon page={activePage} />
       )}
@@ -44,14 +47,9 @@ function App() {
 }
 
 function getDashboardData(tasks) {
-  const today = getLocalDateInputValue()
-  const todayTasks = tasks.filter((task) => task.deadline === today)
-  const todayCompleted = todayTasks.filter((task) => task.status === 'completed').length
-  const todayProgress = todayTasks.length ? Math.round((todayCompleted / todayTasks.length) * 100) : 0
-  const upcomingCount = tasks.filter((task) => task.status !== 'completed' && task.deadline > today).length
-  const overdueCount = tasks.filter((task) => task.status !== 'completed' && task.deadline && task.deadline < today).length
-
-  return { todayProgress, todayCompleted, todayTotal: todayTasks.length, upcomingCount, overdueCount }
+  const summary = getProgressSummary(tasks)
+  const weeklyValues = getWeeklySummary(tasks).days.map((day) => day.percentage)
+  return { ...summary, weeklyValues }
 }
 
 export default App

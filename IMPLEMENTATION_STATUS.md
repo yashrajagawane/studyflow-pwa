@@ -6,13 +6,13 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 6 — Real progress and analytics foundation |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, and Phase 5 |
-| Overall progress | 6 of 17 roadmap phases complete — approximately 35% |
+| Active work | Preparing to start Phase 7 — Study schedule domain |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, and Phase 6 |
+| Overall progress | 7 of 17 roadmap phases complete — approximately 41% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
-| Real progress calculations | Not implemented |
+| Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Not implemented |
 | Settings/reset safety | Not implemented |
 | PWA/offline support | Not implemented |
@@ -30,7 +30,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 3 — Dashboard information architecture | ✅ Complete | Dashboard was extracted into a dedicated page with reusable stat cards, empty states, weekly progress preview, upcoming/overdue metrics, and a data interface ready for planner state. |
 | Phase 4 — Task domain and CRUD | ✅ Complete | Added task model/constants, validation, add/edit form, task cards, completion toggle, delete confirmation, filters, deadlines, subject, priority, notes, and in-memory state. |
 | Phase 5 — Shared state and local persistence | ✅ Complete | Added safe storage adapter, schema versioning, shared context/hooks, persistence for task mutations, malformed-data recovery, and storage-unavailable feedback. |
-| Phase 6 — Real progress and analytics foundation | ⬜ Not started | Daily/weekly calculations and the Progress page are pending. |
+| Phase 6 — Real progress and analytics foundation | ✅ Complete | Added centralized daily/week calculations, connected dashboard weekly values, and added a Progress page with daily, weekly, upcoming, and overdue metrics. |
 | Phase 7 — Study schedule domain | ⬜ Not started | Schedule sessions, validation, ordering, and persistence are pending. |
 | Phase 8 — Settings, recovery, and privacy | ⬜ Not started | Settings, local-data explanation, reset confirmation, and recovery UI are pending. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ⬜ Not started | Initial styling exists, but full feature-level QA is intentionally deferred until the app is functional. |
@@ -96,6 +96,8 @@ This living document records what is actually implemented and verified in the re
 | Phase 4 task workflow commit | ✅ `5aec6c6 Add in-memory task management` |
 | Phase 5 persistence commit | ✅ `4b8e701 Persist planner tasks locally` |
 
+| Phase 6 progress commit | ✅ Pending in this checkpoint |
+
 ## Phase 5 verification
 
 | Test | Result |
@@ -139,6 +141,24 @@ This living document records what is actually implemented and verified in the re
 - `src/components/common/StorageNotice.jsx` — unavailable/invalid storage feedback
 - `src/main.jsx` — provider wiring around the app
 
+## Phase 6 delivered files
+
+- `src/utils/progressUtils.js` — local-week boundaries and real progress summaries
+- `src/pages/Progress.jsx` — full progress overview page
+- `src/App.jsx` — Progress navigation and dashboard metric connection
+- `src/App.css` — weekly detail bars and progress explanation styling
+
+## Phase 6 verification
+
+| Test | Result |
+| --- | --- |
+| Progress page navigation | ✅ Passed in local browser |
+| Empty progress state | ✅ Passed in local browser |
+| Dashboard uses shared progress calculation | ✅ Implemented |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -153,7 +173,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 6 by extracting date-aware progress calculations into tested utility logic and connecting daily/weekly progress views to the persisted task data.
+Start Phase 7 by implementing schedule sessions with date/time validation, local persistence, sorted display, and add/edit/delete actions.
 
 ## Completion rule
 
