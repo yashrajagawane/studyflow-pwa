@@ -1,100 +1,34 @@
 import { useMemo, useState } from 'react'
 import './App.css'
-
-const navigation = [
-  { label: 'Dashboard', icon: '⌂' },
-  { label: 'Tasks', icon: '✓' },
-  { label: 'Schedule', icon: '◷' },
-  { label: 'Progress', icon: '↗' },
-  { label: 'Settings', icon: '⚙' },
-]
+import { AppShell } from './components/layout/AppShell'
+import { ComingSoon } from './components/common/ComingSoon'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
 
   const today = useMemo(
-    () =>
-      new Intl.DateTimeFormat('en-IN', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      }).format(new Date()),
+    () => new Intl.DateTimeFormat('en-IN', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date()),
     [],
   )
 
-  const selectPage = (label) => setActivePage(label)
-
   return (
-    <div className="app-shell">
-      <aside className="sidebar" aria-label="Primary navigation">
-        <div className="brand">
-          <div className="brand-mark" aria-hidden="true">▤</div>
-          <div>
-            <p className="brand-name">Study Planner</p>
-            <p className="brand-caption">Focus. Learn. Grow.</p>
-          </div>
-        </div>
-
-        <nav className="sidebar-nav">
-          <p className="nav-label">Workspace</p>
-          {navigation.map((item) => (
-            <NavButton
-              key={item.label}
-              item={item}
-              active={activePage === item.label}
-              onClick={() => selectPage(item.label)}
-            />
-          ))}
-        </nav>
-
-        <div className="sidebar-footer">
-          <div className="tip-card">
-            <span className="tip-icon" aria-hidden="true">✦</span>
-            <div>
-              <strong>Small steps matter</strong>
-              <p>Start with one focused task today.</p>
-            </div>
-          </div>
-          <p className="version-label">Student Study Planner · MVP</p>
-        </div>
-      </aside>
-
-      <main className="main-content">
-        <header className="topbar">
-          <div>
-            <p className="eyebrow">{today}</p>
-            <h1>Good morning, Yashraj <span aria-hidden="true">👋</span></h1>
-          </div>
-          <button className="profile-button" type="button" aria-label="Open profile">
-            Y
-          </button>
-        </header>
-
-        {activePage === 'Dashboard' ? <Dashboard onAddTask={() => selectPage('Tasks')} /> : <ComingSoon page={activePage} />}
-      </main>
-
-      <nav className="mobile-nav" aria-label="Mobile navigation">
-        {navigation.slice(0, 4).map((item) => (
-          <NavButton
-            key={item.label}
-            item={item}
-            active={activePage === item.label}
-            onClick={() => selectPage(item.label)}
-            mobile
-          />
-        ))}
-      </nav>
-    </div>
-  )
-}
-
-function NavButton({ item, active, onClick, mobile = false }) {
-  return (
-    <button className={`nav-button${active ? ' active' : ''}${mobile ? ' mobile' : ''}`} type="button" onClick={onClick}>
-      <span className="nav-icon" aria-hidden="true">{item.icon}</span>
-      <span>{item.label}</span>
-    </button>
+    <AppShell
+      activePage={activePage}
+      date={today}
+      onNavigate={setActivePage}
+      onProfileClick={() => setActivePage('Settings')}
+    >
+      {activePage === 'Dashboard' ? (
+        <Dashboard onAddTask={() => setActivePage('Tasks')} />
+      ) : (
+        <ComingSoon page={activePage} />
+      )}
+    </AppShell>
   )
 }
 
@@ -178,17 +112,6 @@ function EmptyState({ onAddTask }) {
       <p>Your focused study plan will show up here.</p>
       <button className="secondary-button" type="button" onClick={onAddTask}>Create a task <span aria-hidden="true">→</span></button>
     </div>
-  )
-}
-
-function ComingSoon({ page }) {
-  return (
-    <section className="coming-soon panel">
-      <div className="empty-icon" aria-hidden="true">✦</div>
-      <p className="card-kicker">NEXT BUILD PHASE</p>
-      <h2>{page} is coming next.</h2>
-      <p>This navigation is ready. The {page.toLowerCase()} experience will be added incrementally in the next phase.</p>
-    </section>
   )
 }
 

@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 2 — Design system and application shell |
-| Completed phases | Phase 0 and Phase 1 |
-| Overall progress | 2 of 17 roadmap phases complete — approximately 12% |
+| Active work | Preparing to start Phase 3 — Dashboard information architecture |
+| Completed phases | Phase 0, Phase 1, and Phase 2 |
+| Overall progress | 3 of 17 roadmap phases complete — approximately 18% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Not implemented |
 | localStorage persistence | Not implemented |
@@ -26,7 +26,7 @@ This living document records what is actually implemented and verified in the re
 | --- | --- | --- |
 | Phase 0 — Product analysis and architecture | ✅ Complete | Requirements, MVP boundaries, free stack, data model, quality rules, and roadmap are documented. |
 | Phase 1 — Project initialization | ✅ Complete | React/Vite project, Tailwind, npm scripts, metadata, README foundation, lint/build checks, and initial Git commit exist. |
-| Phase 2 — Design system and application shell | 🟡 Prototype exists; phase not complete | Current shell has sidebar, mobile navigation, dark theme, and responsive styling. It still needs extraction into reusable components and a fuller design system. |
+| Phase 2 — Design system and application shell | ✅ Complete | Extracted reusable `AppShell`, `Sidebar`, `PageHeader`, `MobileNavigation`, `NavButton`, and `ComingSoon` components. Navigation state and active-page behavior remain intact. |
 | Phase 3 — Dashboard information architecture | 🟡 Visual prototype only | Current dashboard has greeting, empty states, summary cards, and weekly placeholder bars. It is not connected to real task data. |
 | Phase 4 — Task domain and CRUD | ⬜ Not started | Forms, validation, task cards, filters, edit, delete, and completion actions are pending. |
 | Phase 5 — Shared state and local persistence | ⬜ Not started | Context/hooks, storage adapter, schema versioning, and recovery handling are pending. |
@@ -64,6 +64,16 @@ This living document records what is actually implemented and verified in the re
 - Placeholder views for non-dashboard navigation sections.
 - Responsive rules for desktop, tablet, and mobile widths.
 
+### Phase 2 component structure
+
+- `src/components/layout/AppShell.jsx` owns the shared page frame.
+- `src/components/layout/Sidebar.jsx` owns desktop branding and navigation.
+- `src/components/layout/PageHeader.jsx` owns the page header and profile action.
+- `src/components/navigation/MobileNavigation.jsx` owns the mobile navigation.
+- `src/components/navigation/NavButton.jsx` provides one reusable navigation control.
+- `src/components/common/ComingSoon.jsx` provides a consistent placeholder view.
+- `src/data/navigation.js` is the single navigation definition used by desktop and mobile.
+
 ### Verification already completed
 
 | Check | Result |
@@ -73,6 +83,7 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | Initial app-shell commit | ✅ `c195cd2 Initial Study Planner app shell` |
 | Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
+| Phase 2 componentization commit | ✅ Pending in this checkpoint |
 
 ## What is deliberately not implemented yet
 
@@ -99,7 +110,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 2 by extracting the current shell into reusable layout, navigation, and common components. Preserve the existing visual direction while making the structure ready for real Dashboard, Tasks, Schedule, Progress, and Settings pages.
+Start Phase 3 by extracting the dashboard into focused components and connecting its cards, today's tasks, and weekly progress areas to shared planner state. The first functional data workflow will then begin with task management.
 
 ## Completion rule
 
