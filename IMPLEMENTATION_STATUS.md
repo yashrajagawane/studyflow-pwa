@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 9 — UX polish, accessibility, and responsive QA |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, and Phase 8 |
-| Overall progress | 9 of 17 roadmap phases complete — approximately 53% |
+| Active work | Preparing to start Phase 10 — PWA packaging and offline architecture |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, and Phase 9 |
+| Overall progress | 10 of 17 roadmap phases complete — approximately 59% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
@@ -33,7 +33,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 6 — Real progress and analytics foundation | ✅ Complete | Added centralized daily/week calculations, connected dashboard weekly values, and added a Progress page with daily, weekly, upcoming, and overdue metrics. |
 | Phase 7 — Study schedule domain | ✅ Complete | Added persisted schedule sessions, date/time validation, sorted display, add/edit/delete actions, and responsive schedule UI. |
 | Phase 8 — Settings, recovery, and privacy | ✅ Complete | Added Settings page, local-only data explanation, privacy information, safe clear-all confirmation, and shared task/session reset actions. |
-| Phase 9 — UX polish, accessibility, and responsive QA | ⬜ Not started | Initial styling exists, but full feature-level QA is intentionally deferred until the app is functional. |
+| Phase 9 — UX polish, accessibility, and responsive QA | ✅ Complete | Added centralized focus-visible styling, larger touch targets, dark date/time controls, reduced-motion safeguards, modal focus management, body-scroll locking, and responsive QA checks. |
 | Phase 10 — PWA packaging and offline architecture | ⬜ Not started | `vite-plugin-pwa`, manifest, icons, service worker, and update strategy are pending. |
 | Phase 11 — Automated and manual testing | ⬜ Not started | Acceptance checklist and utility tests are pending. |
 | Phase 12 — Production cleanup and performance | ⬜ Not started | Starter assets, dead code, bundle review, and final metadata cleanup are pending. |
@@ -208,6 +208,26 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+## Phase 9 delivered changes
+
+- `src/components/common/ConfirmationModal.jsx` — focuses Cancel on open and locks background scrolling.
+- `src/index.css` — centralized keyboard focus ring, tap highlight cleanup, dark native date/time controls, and reduced-motion support.
+- `src/App.css` — improved navigation, profile, and icon-button touch targets.
+
+## Phase 9 verification
+
+| Test | Result |
+| --- | --- |
+| Confirmation dialog receives keyboard focus | ✅ Passed in local browser; Cancel received focus |
+| Confirmation dialog Escape handling | ✅ Implemented |
+| Background scroll lock while modal is open | ✅ Implemented |
+| Desktop horizontal overflow check | ✅ Passed; scroll width matched viewport width |
+| Narrow-screen responsive rules | ✅ Present and build-verified; live viewport override was unavailable in this browser environment |
+| Reduced-motion behavior | ✅ Implemented |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -222,7 +242,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 9 by auditing keyboard focus, semantic labels, touch targets, modal behavior, narrow-screen layouts, and reduced-motion/accessibility details across the functional app.
+Start Phase 10 by adding the installable PWA manifest, original app icons, service worker, update behavior, and offline app-shell caching.
 
 ## Completion rule
 

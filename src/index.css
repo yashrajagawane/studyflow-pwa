@@ -2,3 +2,13 @@
 
 html { min-width: 320px; background: #0b0911; }
 body { min-width: 320px; margin: 0; }
+
+button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(198, 153, 255, .78); outline-offset: 2px; }
+
+input[type='date'], input[type='time'] { color-scheme: dark; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
