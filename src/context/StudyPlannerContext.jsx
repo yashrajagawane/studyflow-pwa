@@ -5,5 +5,9 @@ import { StudyPlannerContext } from './studyPlannerContext'
 export function StudyPlannerProvider({ children }) {
   const taskState = useTasks()
   const scheduleState = useSchedule()
-  return <StudyPlannerContext.Provider value={{ ...taskState, ...scheduleState, storageError: taskState.storageError || scheduleState.storageError }}>{children}</StudyPlannerContext.Provider>
+  const clearAllData = () => {
+    taskState.clearTasks()
+    scheduleState.clearSchedule()
+  }
+  return <StudyPlannerContext.Provider value={{ ...taskState, ...scheduleState, clearAllData, storageError: taskState.storageError || scheduleState.storageError }}>{children}</StudyPlannerContext.Provider>
 }

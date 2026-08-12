@@ -41,5 +41,7 @@ export function useTasks() {
     setTasks((current) => current.filter((task) => task.id !== taskId))
   }, [setTasks])
 
-  return { tasks, createTask, updateTask, toggleTask, deleteTask, storageError }
+  const clearTasks = useCallback(() => setTasks([]), [setTasks])
+
+  return { tasks, createTask, updateTask, toggleTask, deleteTask, clearTasks, storageError }
 }

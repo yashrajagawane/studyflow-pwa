@@ -8,11 +8,12 @@ import { Dashboard } from './pages/Dashboard'
 import { Tasks } from './pages/Tasks'
 import { Progress } from './pages/Progress'
 import { Schedule } from './pages/Schedule'
+import { Settings } from './pages/Settings'
 import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
-  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, storageError } = useStudyPlanner()
+  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, storageError } = useStudyPlanner()
 
   const today = useMemo(
     () => new Intl.DateTimeFormat('en-IN', {
@@ -44,6 +45,8 @@ function App() {
         <Schedule sessions={sessions} onCreate={createSession} onUpdate={updateSession} onDelete={(session) => {
           if (window.confirm(`Delete “${session.title}”?`)) deleteSession(session.id)
         }} />
+      ) : activePage === 'Settings' ? (
+        <Settings taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} />
       ) : (
         <ComingSoon page={activePage} />
       )}

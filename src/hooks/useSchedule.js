@@ -27,5 +27,7 @@ export function useSchedule() {
     setSessions((current) => current.filter((session) => session.id !== sessionId))
   }, [setSessions])
 
-  return { sessions, createSession, updateSession, deleteSession, storageError }
+  const clearSchedule = useCallback(() => setSessions([]), [setSessions])
+
+  return { sessions, createSession, updateSession, deleteSession, clearSchedule, storageError }
 }

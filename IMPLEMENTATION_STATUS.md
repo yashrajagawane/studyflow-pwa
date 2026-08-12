@@ -6,15 +6,15 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 8 — Settings, recovery, and privacy |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, and Phase 7 |
-| Overall progress | 8 of 17 roadmap phases complete — approximately 47% |
+| Active work | Preparing to start Phase 9 — UX polish, accessibility, and responsive QA |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, and Phase 8 |
+| Overall progress | 9 of 17 roadmap phases complete — approximately 53% |
 | Functional MVP | Not complete; current app is a visual foundation/prototype |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Implemented with local persistence |
-| Settings/reset safety | Not implemented |
+| Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Not implemented |
 | GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
 | Vercel | Not deployed |
@@ -32,7 +32,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 5 — Shared state and local persistence | ✅ Complete | Added safe storage adapter, schema versioning, shared context/hooks, persistence for task mutations, malformed-data recovery, and storage-unavailable feedback. |
 | Phase 6 — Real progress and analytics foundation | ✅ Complete | Added centralized daily/week calculations, connected dashboard weekly values, and added a Progress page with daily, weekly, upcoming, and overdue metrics. |
 | Phase 7 — Study schedule domain | ✅ Complete | Added persisted schedule sessions, date/time validation, sorted display, add/edit/delete actions, and responsive schedule UI. |
-| Phase 8 — Settings, recovery, and privacy | ⬜ Not started | Settings, local-data explanation, reset confirmation, and recovery UI are pending. |
+| Phase 8 — Settings, recovery, and privacy | ✅ Complete | Added Settings page, local-only data explanation, privacy information, safe clear-all confirmation, and shared task/session reset actions. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ⬜ Not started | Initial styling exists, but full feature-level QA is intentionally deferred until the app is functional. |
 | Phase 10 — PWA packaging and offline architecture | ⬜ Not started | `vite-plugin-pwa`, manifest, icons, service worker, and update strategy are pending. |
 | Phase 11 — Automated and manual testing | ⬜ Not started | Acceptance checklist and utility tests are pending. |
@@ -184,6 +184,28 @@ This living document records what is actually implemented and verified in the re
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
 
+## Phase 8 delivered files
+
+- `src/pages/Settings.jsx` — settings, privacy, storage information, and data management
+- `src/components/common/ConfirmationModal.jsx` — accessible destructive-action confirmation
+- `src/hooks/useTasks.js` — task reset action
+- `src/hooks/useSchedule.js` — schedule reset action
+- `src/context/StudyPlannerContext.jsx` — shared clear-all action
+- `src/App.jsx` — Settings navigation and data counts
+- `src/App.css` — settings cards, danger zone, and modal styling
+
+## Phase 8 verification
+
+| Test | Result |
+| --- | --- |
+| Open Settings page | ✅ Passed in local browser |
+| Clear action opens confirmation modal | ✅ Passed in local browser |
+| Confirmation required before deletion | ✅ Passed in local browser |
+| Tasks and sessions clear together | ✅ Passed in local browser |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -198,7 +220,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 8 by implementing Settings, safe clear-data confirmation, local-data explanation, storage recovery messaging, and privacy-focused MVP information.
+Start Phase 9 by auditing keyboard focus, semantic labels, touch targets, modal behavior, narrow-screen layouts, and reduced-motion/accessibility details across the functional app.
 
 ## Completion rule
 
