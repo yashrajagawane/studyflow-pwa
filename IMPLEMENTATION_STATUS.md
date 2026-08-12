@@ -1,82 +1,114 @@
-# 📊 Student Study Planner — Implementation Status
+# 📊 Student Study Planner — Current Implementation Status
 
-This is the living progress tracker for the project. It should be updated whenever a phase is completed or an important decision changes.
+This living document records what is actually implemented and verified in the repository. It must be updated after each completed phase and before each milestone commit.
 
 ## Current snapshot
 
-| Item | Status |
+| Item | Current status |
 | --- | --- |
-| Current phase | Phase 1 — Project initialization |
-| Overall progress | 1 of 17 phases complete — approximately 6% |
-| MVP status | Foundation only; feature work has not started |
-| Backend | Not added; localStorage remains the MVP storage plan |
-| PWA | Not configured yet |
-| GitHub | Local Git repository exists; remote is configured as `origin` |
-| Deployment | Not deployed yet |
-| Next phase | Phase 2 — Application shell and design system |
+| Active work | Preparing to start Phase 2 — Design system and application shell |
+| Completed phases | Phase 0 and Phase 1 |
+| Overall progress | 2 of 17 roadmap phases complete — approximately 12% |
+| Functional MVP | Not complete; current app is a visual foundation/prototype |
+| Task CRUD | Not implemented |
+| localStorage persistence | Not implemented |
+| Real progress calculations | Not implemented |
+| Schedule | Not implemented |
+| Settings/reset safety | Not implemented |
+| PWA/offline support | Not implemented |
+| GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
+| Vercel | Not deployed |
+| Cost | Free stack selected; no paid service is required for the MVP |
 
-## Phase status
+## Phase tracking
 
-| Phase | Status | Notes |
+| Phase | Status | Evidence or remaining work |
 | --- | --- | --- |
-| Phase 0 — Analysis and architecture | ✅ Complete | Requirements, free stack, MVP boundary, data model, and roadmap were defined. |
-| Phase 1 — Project initialization | ✅ Complete | Vite React project, Tailwind CSS, metadata, starter shell, README, and first commit are in place. |
-| Phase 2 — Application shell and design system | 🟡 Partially complete | Initial responsive shell and navigation are present; reusable production component structure is still pending. |
-| Phase 3 — Dashboard | 🟡 Partially complete | Dashboard visual foundation and empty states exist; real task data is not connected. |
-| Phase 4 — Task management | ⬜ Not started | CRUD workflow is pending. |
-| Phase 5 — localStorage persistence | ⬜ Not started | Storage service and persistence hook are pending. |
-| Phase 6 — Progress tracking | ⬜ Not started | Real daily and weekly calculations are pending. |
-| Phase 7 — Study schedule | ⬜ Not started | Schedule list and session management are pending. |
-| Phase 8 — Settings and data safety | ⬜ Not started | Settings and clear-data confirmation are pending. |
-| Phase 9 — Responsive and accessibility pass | 🟡 In progress later | Initial responsive styling exists; full QA happens after core features are built. |
-| Phase 10 — PWA configuration | ⬜ Not started | Manifest, icons, and service worker are pending. |
-| Phase 11 — PWA and offline verification | ⬜ Not started | Production PWA testing is pending. |
-| Phase 12 — Production quality and optimization | ⬜ Not started | Release cleanup is pending. |
-| Phase 13 — GitHub preparation | 🟡 Partially complete | Git history and README foundation exist; final repository documentation and remote push remain. |
-| Phase 14 — Free Vercel deployment | ⬜ Not started | Vercel connection and deployment are pending. |
-| Phase 15 — Production testing | ⬜ Not started | Deployed-app verification is pending. |
-| Phase 16 — Final documentation | ⬜ Not started | Screenshots, live URL, and final documentation are pending. |
-| Phase 17 — Future roadmap | ✅ Planned | Future Supabase, AI, notifications, analytics, and focus features are documented. |
+| Phase 0 — Product analysis and architecture | ✅ Complete | Requirements, MVP boundaries, free stack, data model, quality rules, and roadmap are documented. |
+| Phase 1 — Project initialization | ✅ Complete | React/Vite project, Tailwind, npm scripts, metadata, README foundation, lint/build checks, and initial Git commit exist. |
+| Phase 2 — Design system and application shell | 🟡 Prototype exists; phase not complete | Current shell has sidebar, mobile navigation, dark theme, and responsive styling. It still needs extraction into reusable components and a fuller design system. |
+| Phase 3 — Dashboard information architecture | 🟡 Visual prototype only | Current dashboard has greeting, empty states, summary cards, and weekly placeholder bars. It is not connected to real task data. |
+| Phase 4 — Task domain and CRUD | ⬜ Not started | Forms, validation, task cards, filters, edit, delete, and completion actions are pending. |
+| Phase 5 — Shared state and local persistence | ⬜ Not started | Context/hooks, storage adapter, schema versioning, and recovery handling are pending. |
+| Phase 6 — Real progress and analytics foundation | ⬜ Not started | Daily/weekly calculations and the Progress page are pending. |
+| Phase 7 — Study schedule domain | ⬜ Not started | Schedule sessions, validation, ordering, and persistence are pending. |
+| Phase 8 — Settings, recovery, and privacy | ⬜ Not started | Settings, local-data explanation, reset confirmation, and recovery UI are pending. |
+| Phase 9 — UX polish, accessibility, and responsive QA | ⬜ Not started | Initial styling exists, but full feature-level QA is intentionally deferred until the app is functional. |
+| Phase 10 — PWA packaging and offline architecture | ⬜ Not started | `vite-plugin-pwa`, manifest, icons, service worker, and update strategy are pending. |
+| Phase 11 — Automated and manual testing | ⬜ Not started | Acceptance checklist and utility tests are pending. |
+| Phase 12 — Production cleanup and performance | ⬜ Not started | Starter assets, dead code, bundle review, and final metadata cleanup are pending. |
+| Phase 13 — GitHub repository and collaboration workflow | 🟡 Partially ready | Local Git history, `.gitignore`, and README foundation exist. Final README, clean-clone verification, and push confirmation remain. |
+| Phase 14 — Free Vercel deployment | ⬜ Not started | Repository connection, production build, and live URL are pending. |
+| Phase 15 — Production acceptance and handoff | ⬜ Not started | Public URL, PWA installation, offline, and final acceptance testing are pending. |
+| Phase 16 — Future product upgrades | 📝 Planned only | Supabase, sync, notifications, focus tools, and AI remain outside the MVP. |
 
-## Phase 1 delivered files
+## What is implemented now
 
-- `package.json` — React, Vite, Tailwind, and scripts
-- `package-lock.json` — locked dependency versions
-- `vite.config.js` — Vite and Tailwind plugin configuration
-- `index.html` — app title, description, and theme metadata
-- `src/main.jsx` — React entry point
-- `src/App.jsx` — first Study Planner shell and dashboard foundation
-- `src/App.css` — dark responsive visual styling
-- `src/index.css` — global base styling and Tailwind import
-- `README.md` — initial project overview and local commands
-- `.gitignore` — excludes dependencies, builds, and secrets
+### Project foundation
 
-## Verified checks
+- React 19 and Vite project initialized.
+- Tailwind CSS configured through the Vite plugin.
+- `npm run dev`, `npm run build`, `npm run preview`, and `npm run lint` scripts are available.
+- Page title, description, and theme color metadata are present.
+- `.gitignore` excludes dependencies, builds, and environment files.
+
+### Current visual prototype
+
+- Dark, purple-accented visual direction.
+- Desktop sidebar navigation.
+- Mobile bottom navigation.
+- Dashboard greeting and date.
+- Progress, completion, and streak placeholder cards showing honest zero values.
+- Today's task empty state.
+- Weekly progress empty state.
+- Placeholder views for non-dashboard navigation sections.
+- Responsive rules for desktop, tablet, and mobile widths.
+
+### Verification already completed
 
 | Check | Result |
 | --- | --- |
 | `npm install` | ✅ Passed |
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
-| Local Git commit | ✅ `c195cd2 Initial Study Planner app shell` |
-| GitHub push | ⬜ Not performed in this checkpoint |
-| Vercel deployment | ⬜ Not performed |
+| Initial app-shell commit | ✅ `c195cd2 Initial Study Planner app shell` |
+| Planning/status documentation commit | ✅ `7acb2bf Document implementation roadmap and status` |
 
-## Current limitations
+## What is deliberately not implemented yet
 
-- Tasks cannot be created yet.
-- No task data is persisted yet.
-- Dashboard numbers are intentionally zero/empty because real data features are not implemented.
-- Schedule, progress, settings, and PWA installation are not implemented yet.
-- The starter Vite assets still need cleanup during the production-quality phase.
+- No tasks can be created, edited, completed, or deleted.
+- No localStorage data is read or written.
+- Dashboard statistics are not connected to data.
+- No schedule sessions exist.
+- No settings or clear-data confirmation exists.
+- No PWA manifest, icons, service worker, or offline caching exists.
+- No final GitHub push or Vercel deployment has been verified.
+- The Vite starter assets still need cleanup later.
 
-## Next implementation target
+## Current risks and decisions
 
-Build Phase 2 and begin Phase 3 by extracting the shell into reusable components while preserving the current responsive behavior. Then implement the task workflow as the first functional feature.
+| Risk or decision | Resolution |
+| --- | --- |
+| Timezone bugs | Store date-only values as `YYYY-MM-DD`; use local date helpers. |
+| Data loss | Centralize storage and add schema versioning before persistence is considered complete. |
+| Accidental reset | Require an explicit confirmation modal. |
+| Fake analytics | Derive every displayed statistic from stored task data. |
+| Offline complexity | Cache the frontend only; no sync engine in the MVP. |
+| Free-tier drift | Avoid paid APIs, server functions, databases, and unnecessary external services. |
+| Future backend migration | Keep UI dependent on context/services rather than direct localStorage calls. |
+
+## Next action
+
+Start Phase 2 by extracting the current shell into reusable layout, navigation, and common components. Preserve the existing visual direction while making the structure ready for real Dashboard, Tasks, Schedule, Progress, and Settings pages.
+
+## Completion rule
+
+A phase may be marked ✅ only when its implementation, relevant verification, documentation update, and Git commit are complete. A visual placeholder is not counted as a completed functional phase.
 
 ## Status legend
 
-- ✅ Complete
-- 🟡 Partially complete or in progress
+- ✅ Complete and verified
+- 🟡 Prototype or partially implemented
 - ⬜ Not started
 - 🔴 Blocked
+- 📝 Planned only
