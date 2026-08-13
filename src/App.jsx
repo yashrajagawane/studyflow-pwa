@@ -14,6 +14,7 @@ import { getLocalDateInputValue } from './utils/dateUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
+  const [taskToEdit, setTaskToEdit] = useState(null)
   const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, importAllData, storageError } = useStudyPlanner()
 
   const today = useMemo(
@@ -35,11 +36,11 @@ function App() {
     >
       <StorageNotice error={storageError} />
       {activePage === 'Dashboard' ? (
-        <Dashboard data={getDashboardData(tasks)} onAddTask={() => setActivePage('Tasks')} onToggleTask={toggleTask} onEditTask={() => setActivePage('Tasks')} onDeleteTask={(task) => {
+        <Dashboard data={getDashboardData(tasks)} onAddTask={() => setActivePage('Tasks')} onToggleTask={toggleTask} onEditTask={(task) => { setTaskToEdit(task); setActivePage('Tasks') }} onDeleteTask={(task) => {
           if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
         }} />
       ) : activePage === 'Tasks' ? (
-        <Tasks tasks={tasks} onCreate={createTask} onUpdate={updateTask} onToggle={toggleTask} onDelete={(task) => {
+        <Tasks tasks={tasks} initialTask={taskToEdit} onInitialTaskHandled={() => setTaskToEdit(null)} onCreate={createTask} onUpdate={updateTask} onToggle={toggleTask} onDelete={(task) => {
           if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
         }} />
       ) : activePage === 'Progress' ? (

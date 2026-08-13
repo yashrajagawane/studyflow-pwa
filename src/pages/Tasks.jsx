@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { taskFilters } from '../data/taskConstants'
 import { isFutureDate, isPastDate, isToday } from '../utils/dateUtils'
 import { TaskForm } from '../components/tasks/TaskForm'
@@ -12,11 +12,18 @@ function matchesFilter(task, filter) {
   return true
 }
 
-export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete }) {
+export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete, initialTask, onInitialTaskHandled }) {
   const [filter, setFilter] = useState('all')
   const [query, setQuery] = useState('')
   const [editingTask, setEditingTask] = useState(null)
   const [formOpen, setFormOpen] = useState(false)
+
+  useEffect(() => {
+    if (!initialTask) return
+    setEditingTask(initialTask)
+    setFormOpen(true)
+    onInitialTaskHandled?.()
+  }, [initialTask, onInitialTaskHandled])
 
   const visibleTasks = useMemo(
     () => tasks.filter((task) => {
