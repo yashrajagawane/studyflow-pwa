@@ -61,8 +61,9 @@ function getDashboardData(tasks) {
   const summary = getProgressSummary(tasks)
   const weeklyValues = getWeeklySummary(tasks).days.map((day) => day.percentage)
   const today = getLocalDateInputValue()
+  const overdueTasks = tasks.filter((task) => task.status !== 'completed' && task.deadline && task.deadline < today).sort((left, right) => left.deadline.localeCompare(right.deadline)).slice(0, 3)
   const upcomingTasks = tasks.filter((task) => task.status !== 'completed' && task.deadline > today).sort((left, right) => left.deadline.localeCompare(right.deadline)).slice(0, 3)
-  return { ...summary, weeklyValues, todayTasks: tasks.filter((task) => task.deadline === today), upcomingTasks }
+  return { ...summary, weeklyValues, todayTasks: tasks.filter((task) => task.deadline === today), overdueTasks, upcomingTasks }
 }
 
 export default App

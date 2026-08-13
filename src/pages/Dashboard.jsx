@@ -12,6 +12,7 @@ const emptyDashboard = {
   weeklyValues: [0, 0, 0, 0, 0, 0, 0],
   todayTasks: [],
   upcomingTasks: [],
+  overdueTasks: [],
 }
 
 export function Dashboard({ onAddTask, onToggleTask, onEditTask, onDeleteTask, data = emptyDashboard }) {
@@ -56,9 +57,9 @@ export function Dashboard({ onAddTask, onToggleTask, onEditTask, onDeleteTask, d
           </div>
           {dashboard.todayTasks.length > 0 ? <div className="dashboard-task-list">
             {dashboard.todayTasks.map((task) => <TaskCard key={task.id} task={task} onToggle={onToggleTask} onEdit={onEditTask} onDelete={onDeleteTask} />)}
-          </div> : dashboard.upcomingTasks.length > 0 ? <div className="dashboard-task-list">
-            <p className="queue-label">NEXT UP</p>
-            {dashboard.upcomingTasks.map((task) => <TaskCard key={task.id} task={task} onToggle={onToggleTask} onEdit={onEditTask} onDelete={onDeleteTask} />)}
+          </div> : dashboard.overdueTasks.length > 0 || dashboard.upcomingTasks.length > 0 ? <div className="dashboard-task-list">
+            <p className="queue-label">{dashboard.overdueTasks.length > 0 ? 'NEEDS ATTENTION' : 'NEXT UP'}</p>
+            {(dashboard.overdueTasks.length > 0 ? dashboard.overdueTasks : dashboard.upcomingTasks).map((task) => <TaskCard key={task.id} task={task} onToggle={onToggleTask} onEdit={onEditTask} onDelete={onDeleteTask} />)}
           </div> : <EmptyState title="No tasks for today" description="Your focused study plan will show up here." actionLabel="Create a task" onAction={onAddTask} />}
         </div>
 
