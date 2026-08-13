@@ -371,6 +371,7 @@ This living document records what is actually implemented and verified in the re
 - Prioritized up to three overdue tasks in the dashboard queue before future tasks.
 - Added schedule overlap detection for sessions on the same date.
 - Added All sessions and Today schedule views with an honest empty state.
+- Added schedule search across session titles, subjects, and notes.
 - Dashboard edit actions now open the selected task directly in the task form.
 - Added task-library sorting by deadline, priority, title, and newest added.
 
@@ -405,6 +406,7 @@ This living document records what is actually implemented and verified in the re
 | Dashboard urgent queue | ✅ Implemented; overdue tasks take priority over future tasks |
 | Schedule conflict detection | ✅ Implemented; overlapping sessions are rejected before persistence |
 | Schedule Today view | ✅ Implemented; filters sessions to the current local date |
+| Schedule search | ✅ Implemented; case-insensitive search combined with the Today view |
 | Dashboard task editing | ✅ Implemented; selected task opens directly in edit mode |
 | Task sorting | ✅ Implemented; deadline, priority, title, and newest options |
 
