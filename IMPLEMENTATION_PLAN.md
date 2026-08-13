@@ -435,7 +435,7 @@ Exit gate: the app is safe to demonstrate and the documentation matches reality.
 Only after the MVP is stable:
 
 - Supabase authentication and cloud synchronization
-- Export/import backup improvements — first slice implemented as local JSON backup in Settings
+- Export/import backup improvements — first slice implemented and verified as local JSON backup in Settings
 - Multi-device support
 - Notifications and recurring tasks
 - Streaks, goals, XP, and badges

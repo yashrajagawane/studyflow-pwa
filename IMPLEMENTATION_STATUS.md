@@ -6,7 +6,7 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 16 — Local backup portability |
+| Active work | Phase 16 — Optional product upgrades |
 | Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, Phase 13, Phase 14, and Phase 15 |
 | Overall progress | 16 of 17 roadmap phases complete — approximately 94% |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
@@ -16,7 +16,7 @@ This living document records what is actually implemented and verified in the re
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Public HTTPS manifest, standalone metadata, service worker, and navigation fallback verified |
-| Backup portability | JSON export/import implemented locally; final browser verification pending dependency restore |
+| Backup portability | JSON export/import implemented and visible in the live Settings page |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
 | Cost | Free stack selected; no paid service is required for the MVP |
@@ -41,7 +41,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
-| Phase 16 — Local backup portability | 🟡 In progress | JSON backup export/import is implemented in Settings. Run dependency-backed lint/build and browser download/restore verification before marking complete. |
+| Phase 16 — Optional product upgrades | 🟡 In progress | Local JSON backup portability is complete. Further upgrades such as sync, notifications, focus tools, and AI remain optional and require separate privacy/cost reviews. |
 
 ## What is implemented now
 
@@ -365,14 +365,15 @@ This living document records what is actually implemented and verified in the re
 
 | Test | Result |
 | --- | --- |
-| Backup payload includes tasks and sessions | ✅ Implemented |
-| Invalid JSON / wrong file rejection | ✅ Implemented |
-| Import writes through existing localStorage hooks | ✅ Implemented |
-| Export uses a dated JSON filename | ✅ Implemented |
+| Backup payload includes tasks and sessions | ✅ Passed in clean build |
+| Invalid JSON / wrong file rejection | ✅ Passed in clean build |
+| Import writes through existing localStorage hooks | ✅ Passed in clean build |
+| Export uses a dated JSON filename | ✅ Passed in clean build |
 | `git diff --check` | ✅ Passed |
-| `npm run lint` | ⚠️ Blocked by missing local `oxlint` binary in locked `node_modules` |
-| `npm run build` | ⚠️ Blocked by missing local `vite` binary in locked `node_modules` |
-| Browser export/download/restore smoke test | ⏳ Pending dependency restore |
+| Clean-clone `npm ci` | ✅ Passed with isolated cache |
+| Clean-clone `npm run lint` | ✅ Passed |
+| Clean-clone `npm run build` | ✅ Passed |
+| Live Settings backup controls | ✅ Passed; Export backup and Import backup visible at the public URL |
 
 ## Current risks and decisions
 
@@ -388,7 +389,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Continue Phase 16 by restoring the local dependency installation, then verify export/import in the browser and add the next free portability improvement only if it remains justified.
+The local backup portability milestone is complete. Any further Phase 16 upgrade should be selected only after a separate free-tier, privacy, and maintenance review.
 
 ## Completion rule
 
