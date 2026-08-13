@@ -10,6 +10,7 @@ import { Progress } from './pages/Progress'
 import { Schedule } from './pages/Schedule'
 import { Settings } from './pages/Settings'
 import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
+import { getLocalDateInputValue } from './utils/dateUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
@@ -34,7 +35,9 @@ function App() {
     >
       <StorageNotice error={storageError} />
       {activePage === 'Dashboard' ? (
-        <Dashboard data={getDashboardData(tasks)} onAddTask={() => setActivePage('Tasks')} />
+        <Dashboard data={getDashboardData(tasks)} onAddTask={() => setActivePage('Tasks')} onToggleTask={toggleTask} onEditTask={() => setActivePage('Tasks')} onDeleteTask={(task) => {
+          if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
+        }} />
       ) : activePage === 'Tasks' ? (
         <Tasks tasks={tasks} onCreate={createTask} onUpdate={updateTask} onToggle={toggleTask} onDelete={(task) => {
           if (window.confirm(`Delete “${task.title}”?`)) deleteTask(task.id)
@@ -57,7 +60,8 @@ function App() {
 function getDashboardData(tasks) {
   const summary = getProgressSummary(tasks)
   const weeklyValues = getWeeklySummary(tasks).days.map((day) => day.percentage)
-  return { ...summary, weeklyValues }
+  const today = getLocalDateInputValue()
+  return { ...summary, weeklyValues, todayTasks: tasks.filter((task) => task.deadline === today) }
 }
 
 export default App

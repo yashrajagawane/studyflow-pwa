@@ -1,6 +1,7 @@
 import { EmptyState } from '../components/common/EmptyState'
 import { StatCard } from '../components/progress/StatCard'
 import { WeeklyProgressPreview } from '../components/progress/WeeklyProgressPreview'
+import { TaskCard } from '../components/tasks/TaskCard'
 
 const emptyDashboard = {
   todayProgress: 0,
@@ -9,9 +10,10 @@ const emptyDashboard = {
   upcomingCount: 0,
   overdueCount: 0,
   weeklyValues: [0, 0, 0, 0, 0, 0, 0],
+  todayTasks: [],
 }
 
-export function Dashboard({ onAddTask, data = emptyDashboard }) {
+export function Dashboard({ onAddTask, onToggleTask, onEditTask, onDeleteTask, data = emptyDashboard }) {
   const dashboard = { ...emptyDashboard, ...data }
   const hasTasks = dashboard.todayTotal > 0 || dashboard.upcomingCount > 0 || dashboard.overdueCount > 0
   const hasWeeklyActivity = dashboard.weeklyValues.some((value) => value > 0)
@@ -51,12 +53,9 @@ export function Dashboard({ onAddTask, data = emptyDashboard }) {
             </div>
             <button className="text-button" type="button" onClick={onAddTask}>View all</button>
           </div>
-          <EmptyState
-            title="No tasks for today"
-            description="Your focused study plan will show up here."
-            actionLabel="Create a task"
-            onAction={onAddTask}
-          />
+          {dashboard.todayTasks.length > 0 ? <div className="dashboard-task-list">
+            {dashboard.todayTasks.map((task) => <TaskCard key={task.id} task={task} onToggle={onToggleTask} onEdit={onEditTask} onDelete={onDeleteTask} />)}
+          </div> : <EmptyState title="No tasks for today" description="Your focused study plan will show up here." actionLabel="Create a task" onAction={onAddTask} />}
         </div>
 
         <div className="panel progress-panel">

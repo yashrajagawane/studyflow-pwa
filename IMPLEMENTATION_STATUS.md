@@ -363,6 +363,7 @@ This living document records what is actually implemented and verified in the re
 - Added responsive backup controls for narrow screens.
 - Added domain validation for imported tasks and study sessions so malformed backups are rejected before persistence.
 - Added a derived current/longest study streak calculation based on completed-task timestamps.
+- Replaced the dashboard's static empty state with real due-today tasks and completion controls.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -387,6 +388,7 @@ This living document records what is actually implemented and verified in the re
 | Backup domain validation | ✅ Implemented; invalid records are rejected before import |
 | Study streak calculation | ✅ Implemented; consecutive local completion dates only |
 | Study streak edge cases | ✅ Passed; today, yesterday, gaps, and consecutive dates covered by implementation logic |
+| Dashboard today task list | ✅ Implemented; real due-today tasks render with completion and edit actions |
 
 ## Current risks and decisions
 
