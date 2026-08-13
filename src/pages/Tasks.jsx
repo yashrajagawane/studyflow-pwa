@@ -15,6 +15,7 @@ function matchesFilter(task, filter) {
 export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete, initialTask, onInitialTaskHandled }) {
   const [filter, setFilter] = useState('all')
   const [sort, setSort] = useState('deadline')
+  const [priorityFilter, setPriorityFilter] = useState('all')
   const [query, setQuery] = useState('')
   const [editingTask, setEditingTask] = useState(null)
   const [formOpen, setFormOpen] = useState(false)
@@ -29,6 +30,7 @@ export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete, initialTa
   const visibleTasks = useMemo(
     () => tasks.filter((task) => {
       if (!matchesFilter(task, filter)) return false
+      if (priorityFilter !== 'all' && task.priority !== priorityFilter) return false
       const normalizedQuery = query.trim().toLowerCase()
       if (!normalizedQuery) return true
       return [task.title, task.subject, task.notes].some((value) => String(value ?? '').toLowerCase().includes(normalizedQuery))
@@ -38,7 +40,7 @@ export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete, initialTa
       if (sort === 'newest') return String(right.createdAt ?? '').localeCompare(String(left.createdAt ?? ''))
       return (left.deadline || '9999-12-31').localeCompare(right.deadline || '9999-12-31')
     }),
-    [tasks, filter, query, sort],
+    [tasks, filter, priorityFilter, query, sort],
   )
 
   const openCreate = () => {
@@ -95,6 +97,7 @@ export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete, initialTa
         </div>
         <label className="task-search">Search tasks<input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by title, subject, or notes" /></label>
         <label className="task-sort">Sort by<select value={sort} onChange={(event) => setSort(event.target.value)}><option value="deadline">Deadline</option><option value="priority">Priority</option><option value="title">Title</option><option value="newest">Newest added</option></select></label>
+        <label className="task-sort">Priority<select value={priorityFilter} onChange={(event) => setPriorityFilter(event.target.value)}><option value="all">All priorities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
         <TaskList tasks={visibleTasks} filter={filter} onToggle={onToggle} onEdit={openEdit} onDelete={onDelete} onAddTask={openCreate} />
       </section>
     </div>
