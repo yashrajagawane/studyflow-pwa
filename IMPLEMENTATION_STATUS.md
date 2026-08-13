@@ -360,6 +360,7 @@ This living document records what is actually implemented and verified in the re
 - Added Settings controls for exporting and importing planner data without a backend.
 - Added user-visible success and validation-error feedback with an accessible status message.
 - Added responsive backup controls for narrow screens.
+- Added domain validation for imported tasks and study sessions so malformed backups are rejected before persistence.
 
 ## Phase 16 verification
 
@@ -374,6 +375,7 @@ This living document records what is actually implemented and verified in the re
 | Clean-clone `npm run lint` | ✅ Passed |
 | Clean-clone `npm run build` | ✅ Passed |
 | Live Settings backup controls | ✅ Passed; Export backup and Import backup visible at the public URL |
+| Backup domain validation | ✅ Implemented; invalid records are rejected before import |
 
 ## Current risks and decisions
 
