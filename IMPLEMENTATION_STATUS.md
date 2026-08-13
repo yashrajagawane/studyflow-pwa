@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 17 — Local recurring tasks and integrations |
-| Completed phases | Phase 0 through Phase 16 |
-| Overall progress | Core roadmap phases 0 through 16 complete; optional Phase 17 backlog remains |
+| Active work | Phase 18 — External integrations backlog |
+| Completed phases | Phase 0 through Phase 17 |
+| Overall progress | Core roadmap phases 0 through 17 complete; Phase 18 is planned only |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
 | Task CRUD | Implemented with local persistence |
 | localStorage persistence | Complete with safe fallback and schema version |
@@ -43,7 +43,8 @@ This living document records what is actually implemented and verified in the re
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
-| Phase 17 — Optional future integrations | 🟡 In progress | Local recurring tasks are implemented and being verified. Browser reminders and calendar export are next; cloud sync and AI remain separately scoped. |
+| Phase 17 — Free local-first integrations | ✅ Complete | Recurring tasks, iCalendar export, and opt-in foreground browser reminders are implemented, verified, documented, committed, and pushed. |
+| Phase 18 — External integrations backlog | 📝 Planned only | Supabase sync, multi-device support, background push, and AI assistance require a separate privacy, security, and cost review. |
 
 ## What is implemented now
 
@@ -431,13 +432,34 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Phase 16 is complete. Future work belongs to the optional Phase 17 backlog and should not make the free local-first MVP dependent on paid services.
+Phase 17 is complete. Future work belongs to the Phase 18 external integrations backlog and should not make the free local-first MVP dependent on paid services.
 
 ## Phase 17 implementation — Local recurring tasks
 
 - Added one-off, daily, and weekly repeat options to task creation and editing.
 - Completing a recurring task preserves the completed occurrence and creates the next pending occurrence with the next deadline.
 - Added repeat badges and validation while keeping older imported tasks compatible.
+
+## Phase 17 implementation — Calendar and reminders
+
+- Added `src/services/calendarService.js` to export schedule sessions as an escaped, standard iCalendar file.
+- Added an Export calendar action to the Schedule page, disabled when there are no sessions.
+- Added `src/hooks/useBrowserReminders.js` for opt-in local browser notifications, with one reminder per scheduled occurrence.
+- Added Settings controls that explain permission, browser support, and the foreground-only limitation.
+
+## Phase 17 verification
+
+| Test | Result |
+| --- | --- |
+| Recurring task creation and validation | ✅ Implemented and build-verified |
+| Completing daily/weekly task creates next occurrence | ✅ Implemented and build-verified |
+| Calendar export service | ✅ Implemented with escaped iCalendar values and local download |
+| Calendar export empty state | ✅ Button disabled when no sessions exist |
+| Browser reminder permission flow | ✅ Opt-in request and denied/unsupported states implemented |
+| Reminder de-duplication | ✅ Local occurrence keys prevent repeat notifications |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
 
 ## Completion rule
 

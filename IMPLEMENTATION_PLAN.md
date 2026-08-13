@@ -446,19 +446,29 @@ Completed scope:
 
 Exit gate: all implemented upgrades are verified, documented, committed, and pushed. Larger cloud and AI features move to the optional backlog below.
 
-### Phase 17 — Optional future integrations 📝
+### Phase 17 — Free local-first integrations ✅
 
-These are deliberately outside the completed free local-first MVP:
+Objective: finish the useful integration layer without accounts, servers, paid APIs, or a change to the local-first privacy model.
+
+Completed scope:
+
+- One-off, daily, and weekly recurring tasks with automatic next occurrences
+- Standard iCalendar (`.ics`) export for all planned study sessions
+- Opt-in browser reminders up to 15 minutes before a session while the app is open
+- Clear permission and support messaging for browser notifications
+
+Exit gate: all free local integrations are implemented, verified, documented, committed, and pushed. Notifications are intentionally foreground-only; background push would require a server and user subscription flow.
+
+### Phase 18 — External integrations backlog 📝
+
+These require a separate privacy, security, reliability, and cost review:
 
 - Supabase authentication and cloud synchronization
-- Multi-device support
-- Notifications and recurring tasks
-- Exam countdown and calendar integration
-- AI-generated study plans and exam preparation assistant
+- Multi-device support and conflict resolution
+- Background push notifications
+- AI-generated study plans and exam preparation assistance
 
-Each future integration requires its own data, privacy, cost, security, and testing review before implementation.
-
-Current implementation slice: local recurring tasks are being added first because they require no external account, API, or paid service.
+No external account, secret, paid API, or backend is required for the completed Phase 17 experience.
 
 ## 6. Repository quality rules
 

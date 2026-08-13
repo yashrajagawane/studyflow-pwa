@@ -10,7 +10,7 @@ A free, mobile-first student productivity PWA for planning tasks, study sessions
 
 ## Current status
 
-The local-first MVP is implemented through Phase 16. The public production deployment is live on Vercel, production acceptance is complete, and the free upgrade layer is complete. Tasks, progress, study sessions, settings, persistence, accessibility polish, PWA packaging, backups, focus mode, streaks, and planning filters are complete.
+The local-first MVP and free integration layer are implemented through Phase 17. The public production deployment is live on Vercel, production acceptance is complete, and the app supports recurring tasks, calendar export, and opt-in foreground browser reminders without an account or paid service.
 
 ## Features
 
@@ -28,6 +28,9 @@ The local-first MVP is implemented through Phase 16. The public production deplo
 - Browser localStorage persistence across refreshes and reopening
 - Safe clear-data confirmation
 - Local JSON backup export and import
+- Daily and weekly recurring tasks
+- iCalendar export for planned sessions
+- Optional browser reminders while the app is open
 - Responsive dark UI for desktop and mobile
 - Installable PWA with service-worker app-shell caching
 - No login, backend, analytics, paid API, or secret required for the MVP
@@ -103,7 +106,8 @@ No paid domain, database, API, or Google Play Store publication is required.
 
 - Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final handoff ✅
-- Future Phase 17: Supabase synchronization, multi-device support, notifications, calendar integration, and AI study assistance
+- Phase 17: free local recurring tasks, calendar export, and foreground reminders ✅
+- Future Phase 18: Supabase synchronization, multi-device support, background push, and AI study assistance
 
 ## Author
 
