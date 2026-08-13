@@ -1,10 +1,11 @@
 import { EmptyState } from '../components/common/EmptyState'
 import { StatCard } from '../components/progress/StatCard'
-import { getProgressSummary, getWeeklySummary } from '../utils/progressUtils'
+import { getProgressSummary, getStreakSummary, getWeeklySummary } from '../utils/progressUtils'
 
 export function Progress({ tasks, onAddTask }) {
   const today = getProgressSummary(tasks)
   const week = getWeeklySummary(tasks)
+  const streak = getStreakSummary(tasks)
   const hasActivity = week.total > 0
 
   return (
@@ -22,6 +23,7 @@ export function Progress({ tasks, onAddTask }) {
         <StatCard label="This week" value={`${week.percentage}%`} detail={`${week.completed} of ${week.total} complete`} icon="↗" />
         <StatCard label="Upcoming" value={today.upcomingCount} detail="Open deadlines" icon="◷" />
         <StatCard label="Overdue" value={today.overdueCount} detail={today.overdueCount ? 'Needs attention' : 'Nothing overdue'} icon="!" />
+        <StatCard label="Study streak" value={`${streak.currentStreak} ${streak.currentStreak === 1 ? 'day' : 'days'}`} detail={streak.activeToday ? 'Completed today' : 'Keep it going'} icon="✦" />
       </section>
 
       <section className="panel weekly-detail-panel">
@@ -50,7 +52,7 @@ export function Progress({ tasks, onAddTask }) {
 
       <section className="progress-explanation panel">
         <span className="tip-icon" aria-hidden="true">✦</span>
-        <div><h3>How progress is calculated</h3><p>Daily and weekly progress uses tasks with deadlines. A task counts as complete only after you mark it finished.</p></div>
+        <div><h3>How progress is calculated</h3><p>Daily and weekly progress uses tasks with deadlines. A task counts as complete only after you mark it finished. Your study streak counts consecutive local calendar days with at least one completed task.</p></div>
       </section>
     </div>
   )

@@ -17,6 +17,7 @@ This living document records what is actually implemented and verified in the re
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Public HTTPS manifest, standalone metadata, service worker, and navigation fallback verified |
 | Backup portability | JSON export/import implemented and visible in the live Settings page |
+| Study streak | Current and longest streaks derived from completed-task timestamps |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
 | Cost | Free stack selected; no paid service is required for the MVP |
@@ -361,6 +362,14 @@ This living document records what is actually implemented and verified in the re
 - Added user-visible success and validation-error feedback with an accessible status message.
 - Added responsive backup controls for narrow screens.
 - Added domain validation for imported tasks and study sessions so malformed backups are rejected before persistence.
+- Added a derived current/longest study streak calculation based on completed-task timestamps.
+
+## Phase 16 implementation — Study streak analytics
+
+- Added `getStreakSummary` to derive current and longest consecutive completion-day streaks.
+- Added a Study streak card to the Progress page.
+- Counts local calendar days with at least one completed task and ignores incomplete or invalid timestamps.
+- Kept the metric local-only with no account, analytics service, or paid dependency.
 
 ## Phase 16 verification
 
@@ -376,6 +385,8 @@ This living document records what is actually implemented and verified in the re
 | Clean-clone `npm run build` | ✅ Passed |
 | Live Settings backup controls | ✅ Passed; Export backup and Import backup visible at the public URL |
 | Backup domain validation | ✅ Implemented; invalid records are rejected before import |
+| Study streak calculation | ✅ Implemented; consecutive local completion dates only |
+| Study streak edge cases | ✅ Passed; today, yesterday, gaps, and consecutive dates covered by implementation logic |
 
 ## Current risks and decisions
 

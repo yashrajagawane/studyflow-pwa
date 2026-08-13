@@ -12,6 +12,12 @@ function toDateInputValue(date) {
   return `${year}-${month}-${day}`
 }
 
+function addDays(value, amount) {
+  const date = dateFromInput(value)
+  date.setDate(date.getDate() + amount)
+  return toDateInputValue(date)
+}
+
 export function getWeekDates(referenceDate = new Date()) {
   const date = new Date(referenceDate)
   const day = date.getDay()
@@ -72,4 +78,33 @@ export function getWeeklySummary(tasks, referenceDate = new Date()) {
     completed,
     percentage: getCompletionPercentage(completed, total),
   }
+}
+
+export function getStreakSummary(tasks, today = getLocalDateInputValue()) {
+  const completedDates = new Set(tasks
+    .filter((task) => task.status === 'completed' && task.completedAt)
+    .map((task) => {
+      const date = new Date(task.completedAt)
+      return Number.isNaN(date.getTime()) ? null : toDateInputValue(date)
+    })
+    .filter(Boolean))
+
+  let currentStreak = 0
+  let cursor = completedDates.has(today) ? today : addDays(today, -1)
+  while (completedDates.has(cursor)) {
+    currentStreak += 1
+    cursor = addDays(cursor, -1)
+  }
+
+  const sortedDates = [...completedDates].sort()
+  let longestStreak = 0
+  let runningStreak = 0
+  let previousDate = null
+  sortedDates.forEach((date) => {
+    runningStreak = previousDate && addDays(previousDate, 1) === date ? runningStreak + 1 : 1
+    longestStreak = Math.max(longestStreak, runningStreak)
+    previousDate = date
+  })
+
+  return { currentStreak, longestStreak, activeToday: completedDates.has(today) }
 }
