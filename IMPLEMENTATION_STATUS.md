@@ -367,6 +367,7 @@ This living document records what is actually implemented and verified in the re
 - Added a client-side 25-minute focus timer with start, pause, restart, and reset controls.
 - Added open-task selection to focus sprints without changing task completion automatically.
 - Added task-library search across titles, subjects, and notes, combined with existing status filters.
+- Added a dashboard next-up queue showing up to three nearest future tasks when today has no tasks.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -395,6 +396,7 @@ This living document records what is actually implemented and verified in the re
 | Focus timer | ✅ Implemented; client-side 25-minute timer with accessible live time output |
 | Focus task context | ✅ Implemented; open tasks can be selected before starting a sprint |
 | Task search | ✅ Implemented; case-insensitive title, subject, and notes search |
+| Dashboard next-up queue | ✅ Implemented; nearest three open future tasks are derived from deadlines |
 
 ## Current risks and decisions
 
