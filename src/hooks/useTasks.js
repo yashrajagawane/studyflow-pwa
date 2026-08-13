@@ -7,6 +7,13 @@ function createId() {
     : `task-${Date.now()}-${Math.random().toString(16).slice(2)}`
 }
 
+function getNextDeadline(deadline, recurrence) {
+  if (!deadline || recurrence === 'none') return ''
+  const date = new Date(`${deadline}T12:00:00`)
+  date.setDate(date.getDate() + (recurrence === 'weekly' ? 7 : 1))
+  return date.toISOString().slice(0, 10)
+}
+
 export function useTasks() {
   const { value: storedTasks, setValue: setTasks, storageError } = useLocalStorage('study-planner-tasks', [])
   const tasks = Array.isArray(storedTasks) ? storedTasks : []
@@ -30,10 +37,12 @@ export function useTasks() {
   }, [setTasks])
 
   const toggleTask = useCallback((taskId) => {
-    setTasks((current) => current.map((task) => {
+    setTasks((current) => current.flatMap((task) => {
       if (task.id !== taskId) return task
       const completed = task.status !== 'completed'
-      return { ...task, status: completed ? 'completed' : 'pending', completedAt: completed ? new Date().toISOString() : null }
+      const updated = { ...task, status: completed ? 'completed' : 'pending', completedAt: completed ? new Date().toISOString() : null }
+      if (!completed || task.recurrence === 'none' || !task.deadline) return updated
+      return [updated, { ...task, id: createId(), deadline: getNextDeadline(task.deadline, task.recurrence), status: 'pending', completedAt: null, createdAt: new Date().toISOString() }]
     }))
   }, [setTasks])
 

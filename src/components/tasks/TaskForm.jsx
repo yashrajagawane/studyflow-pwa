@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { emptyTask, priorities, subjects } from '../../data/taskConstants'
+import { emptyTask, priorities, recurrenceOptions, subjects } from '../../data/taskConstants'
 import { validateTask } from '../../utils/validation'
 
 export function TaskForm({ task, onSave, onCancel }) {
@@ -49,6 +49,14 @@ export function TaskForm({ task, onSave, onCancel }) {
             {subjects.map((subject) => <option key={subject} value={subject}>{subject}</option>)}
           </select>
           {errors.subject ? <small className="field-error">{errors.subject}</small> : null}
+        </label>
+
+        <label className="field">
+          <span>Repeat</span>
+          <select value={form.recurrence ?? 'none'} onChange={(event) => updateField('recurrence', event.target.value)}>
+            {recurrenceOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+          </select>
+          {errors.recurrence ? <small className="field-error">{errors.recurrence}</small> : null}
         </label>
 
         <label className="field">

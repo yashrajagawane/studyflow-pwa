@@ -1,4 +1,4 @@
-import { priorities, subjects } from '../data/taskConstants'
+import { priorities, recurrenceOptions, subjects } from '../data/taskConstants'
 import { isValidDateInput } from './dateUtils'
 
 export function validateTask(task) {
@@ -9,6 +9,7 @@ export function validateTask(task) {
   if (title.length > 120) errors.title = 'Keep the title under 120 characters.'
   if (!subjects.includes(task.subject)) errors.subject = 'Choose a valid subject.'
   if (!priorities.includes(task.priority)) errors.priority = 'Choose a valid priority.'
+  if (!recurrenceOptions.some((option) => option.value === (task.recurrence ?? 'none'))) errors.recurrence = 'Choose a valid repeat option.'
   if (task.deadline && !isValidDateInput(task.deadline)) errors.deadline = 'Enter a valid deadline.'
   if ((task.notes?.length ?? 0) > 500) errors.notes = 'Keep notes under 500 characters.'
 

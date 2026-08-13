@@ -6,7 +6,7 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 17 — Optional future integrations |
+| Active work | Phase 17 — Local recurring tasks and integrations |
 | Completed phases | Phase 0 through Phase 16 |
 | Overall progress | Core roadmap phases 0 through 16 complete; optional Phase 17 backlog remains |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
@@ -43,7 +43,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
-| Phase 17 — Optional future integrations | 📝 Planned only | Cloud sync, multi-device support, notifications, calendar integration, and AI require separate privacy, cost, security, and testing reviews. |
+| Phase 17 — Optional future integrations | 🟡 In progress | Local recurring tasks are implemented and being verified. Browser reminders and calendar export are next; cloud sync and AI remain separately scoped. |
 
 ## What is implemented now
 
@@ -432,6 +432,12 @@ This living document records what is actually implemented and verified in the re
 ## Next action
 
 Phase 16 is complete. Future work belongs to the optional Phase 17 backlog and should not make the free local-first MVP dependent on paid services.
+
+## Phase 17 implementation — Local recurring tasks
+
+- Added one-off, daily, and weekly repeat options to task creation and editing.
+- Completing a recurring task preserves the completed occurrence and creates the next pending occurrence with the next deadline.
+- Added repeat badges and validation while keeping older imported tasks compatible.
 
 ## Completion rule
 

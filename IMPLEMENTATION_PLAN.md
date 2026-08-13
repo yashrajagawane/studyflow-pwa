@@ -458,6 +458,8 @@ These are deliberately outside the completed free local-first MVP:
 
 Each future integration requires its own data, privacy, cost, security, and testing review before implementation.
 
+Current implementation slice: local recurring tasks are being added first because they require no external account, API, or paid service.
+
 ## 6. Repository quality rules
 
 - Keep changes small and explain the purpose of each phase.

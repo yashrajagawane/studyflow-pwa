@@ -16,6 +16,7 @@ export function TaskCard({ task, onToggle, onEdit, onDelete }) {
         </div>
         <div className="task-meta">
           <span className="subject-badge">{task.subject}</span>
+          {task.recurrence && task.recurrence !== 'none' ? <span className="repeat-badge">↻ {task.recurrence}</span> : null}
           <span className={overdue ? 'deadline overdue' : dueToday ? 'deadline today' : 'deadline'}>
             {overdue ? 'Overdue · ' : dueToday ? 'Due today · ' : ''}{formatDateLabel(task.deadline)}
           </span>

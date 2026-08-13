@@ -10,6 +10,11 @@ export const subjects = [
 ]
 
 export const priorities = ['low', 'medium', 'high']
+export const recurrenceOptions = [
+  { value: 'none', label: 'Does not repeat' },
+  { value: 'daily', label: 'Repeats daily' },
+  { value: 'weekly', label: 'Repeats weekly' },
+]
 
 export const taskFilters = [
   { value: 'all', label: 'All tasks' },
@@ -25,4 +30,5 @@ export const emptyTask = {
   priority: 'medium',
   deadline: '',
   notes: '',
+  recurrence: 'none',
 }
