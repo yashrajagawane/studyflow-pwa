@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 13 — GitHub repository and collaboration workflow |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, and Phase 12 |
-| Overall progress | 13 of 17 roadmap phases complete — approximately 76% |
+| Active work | Preparing to start Phase 14 — Free Vercel deployment |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, and Phase 13 |
+| Overall progress | 14 of 17 roadmap phases complete — approximately 82% |
 | Functional MVP | Feature-complete local-first MVP; release, GitHub, deployment, and production acceptance remain |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
@@ -16,7 +16,7 @@ This living document records what is actually implemented and verified in the re
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Packaged and production-preview verified; public HTTPS offline test remains |
-| GitHub | Local history exists; remote `origin` is configured, but this documentation checkpoint has not been pushed as part of this task |
+| GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Not deployed |
 | Cost | Free stack selected; no paid service is required for the MVP |
 
@@ -37,7 +37,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 10 — PWA packaging and offline architecture | ✅ Complete | Added `vite-plugin-pwa`, standalone manifest, original scalable icon, auto-update registration, app-shell precaching, navigation fallback, and outdated-cache cleanup. |
 | Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified. Actual installed/offline launch requires the public HTTPS deployment and remains in Phase 15 acceptance. |
 | Phase 12 — Production cleanup and performance | ✅ Complete | Removed unused Vite starter assets, switched to the original PWA icon, reduced PWA precache output, refreshed README/release metadata, and verified dependency/build health. |
-| Phase 13 — GitHub repository and collaboration workflow | 🟡 Partially ready | Local Git history, `.gitignore`, and README foundation exist. Final README, clean-clone verification, and push confirmation remain. |
+| Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
 | Phase 14 — Free Vercel deployment | ⬜ Not started | Repository connection, production build, and live URL are pending. |
 | Phase 15 — Production acceptance and handoff | ⬜ Not started | Public URL, PWA installation, offline, and final acceptance testing are pending. |
 | Phase 16 — Future product upgrades | 📝 Planned only | Supabase, sync, notifications, focus tools, and AI remain outside the MVP. |
@@ -293,6 +293,24 @@ This living document records what is actually implemented and verified in the re
 | `git diff --check` | ✅ Passed |
 | Phase 12 cleanup commit | ✅ `9ca4e16 Clean up production release assets` |
 
+## Phase 13 delivered changes
+
+- Finalized `README.md` with features, architecture, local setup, PWA installation, privacy, deployment, roadmap, and author information.
+- Added `.github/workflows/ci.yml` for free GitHub Actions lint/build checks on pushes and pull requests to `master`.
+- Verified a fresh local clone with `npm ci`, `npm run lint`, and `npm run build`.
+- Pushed repository to [GitHub](https://github.com/yashrajagawane/studyflow-pwa).
+
+## Phase 13 verification
+
+| Test | Result |
+| --- | --- |
+| Git remote configured | ✅ `https://github.com/yashrajagawane/studyflow-pwa.git` |
+| Clean-clone `npm ci` | ✅ Passed |
+| Clean-clone `npm run lint` | ✅ Passed |
+| Clean-clone `npm run build` | ✅ Passed |
+| GitHub push | ✅ `master` pushed successfully |
+| Working tree before status update | ✅ Clean |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -307,7 +325,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 13 by finalizing the GitHub-ready repository, checking the clean clone workflow, completing README/repository documentation, and pushing the project to GitHub.
+Start Phase 14 by connecting the GitHub repository to Vercel's free tier, deploying the production build to a public HTTPS `vercel.app` URL, and recording the live URL.
 
 ## Completion rule
 
