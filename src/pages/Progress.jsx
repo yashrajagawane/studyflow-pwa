@@ -27,7 +27,7 @@ export function Progress({ tasks, onAddTask }) {
         <StatCard label="Study streak" value={`${streak.currentStreak} ${streak.currentStreak === 1 ? 'day' : 'days'}`} detail={streak.activeToday ? 'Completed today' : 'Keep it going'} icon="✦" />
       </section>
 
-      <FocusTimer />
+      <FocusTimer tasks={tasks} />
 
       <section className="panel weekly-detail-panel">
         <div className="panel-heading">

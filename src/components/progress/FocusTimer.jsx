@@ -8,9 +8,10 @@ function formatTime(seconds) {
   return `${minutes}:${remaining}`
 }
 
-export function FocusTimer() {
+export function FocusTimer({ tasks = [] }) {
   const [seconds, setSeconds] = useState(FOCUS_SECONDS)
   const [running, setRunning] = useState(false)
+  const [selectedTaskId, setSelectedTaskId] = useState('')
 
   useEffect(() => {
     if (!running || seconds === 0) return undefined
@@ -33,6 +34,12 @@ export function FocusTimer() {
         <p className="card-kicker">FOCUS MODE</p>
         <h2>Study for one focused sprint.</h2>
         <p>Use a 25-minute timer to turn your next task into a manageable session.</p>
+        <label className="focus-task-field">Task for this sprint
+          <select value={selectedTaskId} onChange={(event) => setSelectedTaskId(event.target.value)} disabled={running}>
+            <option value="">Choose an open task</option>
+            {tasks.filter((task) => task.status !== 'completed').map((task) => <option key={task.id} value={task.id}>{task.title}</option>)}
+          </select>
+        </label>
       </div>
       <div className="focus-timer-controls">
         <strong className="focus-time" aria-live="polite">{formatTime(seconds)}</strong>

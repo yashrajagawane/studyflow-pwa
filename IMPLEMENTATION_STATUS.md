@@ -365,6 +365,7 @@ This living document records what is actually implemented and verified in the re
 - Added a derived current/longest study streak calculation based on completed-task timestamps.
 - Replaced the dashboard's static empty state with real due-today tasks and completion controls.
 - Added a client-side 25-minute focus timer with start, pause, restart, and reset controls.
+- Added open-task selection to focus sprints without changing task completion automatically.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -391,6 +392,7 @@ This living document records what is actually implemented and verified in the re
 | Study streak edge cases | ✅ Passed; today, yesterday, gaps, and consecutive dates covered by implementation logic |
 | Dashboard today task list | ✅ Implemented; real due-today tasks render with completion and edit actions |
 | Focus timer | ✅ Implemented; client-side 25-minute timer with accessible live time output |
+| Focus task context | ✅ Implemented; open tasks can be selected before starting a sprint |
 
 ## Current risks and decisions
 
