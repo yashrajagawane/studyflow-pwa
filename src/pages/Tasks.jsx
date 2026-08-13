@@ -14,12 +14,18 @@ function matchesFilter(task, filter) {
 
 export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete }) {
   const [filter, setFilter] = useState('all')
+  const [query, setQuery] = useState('')
   const [editingTask, setEditingTask] = useState(null)
   const [formOpen, setFormOpen] = useState(false)
 
   const visibleTasks = useMemo(
-    () => tasks.filter((task) => matchesFilter(task, filter)),
-    [tasks, filter],
+    () => tasks.filter((task) => {
+      if (!matchesFilter(task, filter)) return false
+      const normalizedQuery = query.trim().toLowerCase()
+      if (!normalizedQuery) return true
+      return [task.title, task.subject, task.notes].some((value) => String(value ?? '').toLowerCase().includes(normalizedQuery))
+    }),
+    [tasks, filter, query],
   )
 
   const openCreate = () => {
@@ -74,6 +80,7 @@ export function Tasks({ tasks, onCreate, onUpdate, onToggle, onDelete }) {
             ))}
           </div>
         </div>
+        <label className="task-search">Search tasks<input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by title, subject, or notes" /></label>
         <TaskList tasks={visibleTasks} filter={filter} onToggle={onToggle} onEdit={openEdit} onDelete={onDelete} onAddTask={openCreate} />
       </section>
     </div>

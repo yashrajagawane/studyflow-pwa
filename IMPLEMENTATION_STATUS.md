@@ -366,6 +366,7 @@ This living document records what is actually implemented and verified in the re
 - Replaced the dashboard's static empty state with real due-today tasks and completion controls.
 - Added a client-side 25-minute focus timer with start, pause, restart, and reset controls.
 - Added open-task selection to focus sprints without changing task completion automatically.
+- Added task-library search across titles, subjects, and notes, combined with existing status filters.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -393,6 +394,7 @@ This living document records what is actually implemented and verified in the re
 | Dashboard today task list | ✅ Implemented; real due-today tasks render with completion and edit actions |
 | Focus timer | ✅ Implemented; client-side 25-minute timer with accessible live time output |
 | Focus task context | ✅ Implemented; open tasks can be selected before starting a sprint |
+| Task search | ✅ Implemented; case-insensitive title, subject, and notes search |
 
 ## Current risks and decisions
 
