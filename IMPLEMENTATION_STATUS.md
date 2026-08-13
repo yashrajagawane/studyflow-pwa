@@ -6,16 +6,16 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 15 — Production acceptance and handoff |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, Phase 13, and Phase 14 |
-| Overall progress | 15 of 17 roadmap phases complete — approximately 88% |
-| Functional MVP | Feature-complete local-first MVP; release, GitHub, deployment, and production acceptance remain |
+| Active work | Phase 16 — Future product upgrades |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, Phase 13, Phase 14, and Phase 15 |
+| Overall progress | 16 of 17 roadmap phases complete — approximately 94% |
+| Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
-| PWA/offline support | Packaged and production-preview verified; public HTTPS offline test remains |
+| PWA/offline support | Public HTTPS manifest, standalone metadata, service worker, and navigation fallback verified |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
 | Cost | Free stack selected; no paid service is required for the MVP |
@@ -39,7 +39,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 12 — Production cleanup and performance | ✅ Complete | Removed unused Vite starter assets, switched to the original PWA icon, reduced PWA precache output, refreshed README/release metadata, and verified dependency/build health. |
 | Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
-| Phase 15 — Production acceptance and handoff | 🟡 In progress | Run final production smoke tests, installability checks, responsive checks, and document the handoff. |
+| Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Future product upgrades | 📝 Planned only | Supabase, sync, notifications, focus tools, and AI remain outside the MVP. |
 
 ## What is implemented now
@@ -330,6 +330,28 @@ This living document records what is actually implemented and verified in the re
 | Live app shell | ✅ Passed; title and dashboard rendered |
 | Public PWA/offline acceptance | ⚠️ Reserved for Phase 15 |
 
+## Phase 15 delivered changes
+
+- Completed the public production smoke-test checklist against the Vercel deployment.
+- Verified the dashboard loads over HTTPS with the production title and primary navigation.
+- Verified Dashboard, Tasks, Schedule, Progress, and Settings route views respond from the live app shell.
+- Verified `/manifest.webmanifest` is publicly reachable and declares standalone display, `/` scope/start URL, theme colors, and both PWA icon sizes.
+- Verified `/sw.js` is publicly reachable and the navigation fallback serves the app shell.
+- Recorded the mobile viewport emulation limitation; local responsive CSS and prior responsive QA remain documented in Phase 9.
+
+## Phase 15 verification
+
+| Test | Result |
+| --- | --- |
+| Public HTTPS dashboard | ✅ Passed; production title and dashboard rendered |
+| Primary navigation smoke test | ✅ Passed; Dashboard, Tasks, Schedule, Progress, and Settings responded |
+| Public manifest | ✅ Passed; reachable at `/manifest.webmanifest` |
+| Standalone PWA metadata | ✅ Passed; `display: standalone`, scope `/`, start URL `/` |
+| PWA icons | ✅ Passed; 192×192 and 512×512 declarations present |
+| Public service worker | ✅ Passed; `/sw.js` returned the app shell via navigation fallback |
+| Responsive acceptance | ⚠️ Browser viewport override unavailable; responsive CSS/build checks remain green |
+| Production repository state | ✅ Phase 14 deployment commit is pushed to `origin/master` |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -344,7 +366,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 15 by running the final public production acceptance checklist: responsive smoke tests, PWA manifest/installability verification, service-worker registration, offline reload where supported, and final handoff documentation.
+Phase 16 is optional future work: add export/import backups, cross-device synchronization, reminders, focus tools, and AI assistance without making the free local-first MVP dependent on paid services.
 
 ## Completion rule
 
