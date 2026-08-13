@@ -7,10 +7,12 @@ import { getLocalDateInputValue, formatDateLabel } from '../utils/dateUtils'
 export function Schedule({ sessions, onCreate, onUpdate, onDelete }) {
   const [formOpen, setFormOpen] = useState(false)
   const [editingSession, setEditingSession] = useState(null)
+  const [view, setView] = useState('all')
 
   const sortedSessions = useMemo(() => [...sessions].sort((a, b) => `${a.date}${a.startTime}`.localeCompare(`${b.date}${b.startTime}`)), [sessions])
   const today = getLocalDateInputValue()
   const todayCount = sessions.filter((session) => session.date === today).length
+  const visibleSessions = view === 'today' ? sortedSessions.filter((session) => session.date === today) : sortedSessions
 
   const openCreate = () => { setEditingSession(null); setFormOpen(true) }
   const openEdit = (session) => { setEditingSession(session); setFormOpen(true) }
@@ -26,7 +28,7 @@ export function Schedule({ sessions, onCreate, onUpdate, onDelete }) {
       <div className="page-intro"><div><p className="card-kicker">YOUR PLAN</p><h2>Study schedule</h2><p className="page-description">Give your study time a place on the calendar.</p></div><button className="primary-button" type="button" onClick={openCreate}><span aria-hidden="true">＋</span> Add session</button></div>
       <div className="schedule-summary"><span><strong>{todayCount}</strong> {todayCount === 1 ? 'session' : 'sessions'} today</span><span>{sessions.length} total planned</span></div>
       {formOpen ? <section className="panel task-form-panel"><ScheduleForm session={editingSession} sessions={sessions} onSave={saveSession} onCancel={closeForm} /></section> : null}
-      <section className="panel schedule-list-panel"><div className="panel-heading"><div><p className="card-kicker">UPCOMING SESSIONS</p><h2>{sessions.length ? 'Your study plan' : 'No sessions yet'}</h2></div><span className="week-badge">{sessions.length ? formatDateLabel(sortedSessions[0].date) : 'Start planning'}</span></div>{sessions.length ? <div className="schedule-list">{sortedSessions.map((session) => <ScheduleCard key={session.id} session={session} onEdit={openEdit} onDelete={onDelete} />)}</div> : <EmptyState title="Make time for what matters" description="Schedule your first focused study session." actionLabel="Add a session" onAction={openCreate} />}</section>
+      <section className="panel schedule-list-panel"><div className="panel-heading"><div><p className="card-kicker">UPCOMING SESSIONS</p><h2>{sessions.length ? 'Your study plan' : 'No sessions yet'}</h2></div><span className="week-badge">{sessions.length ? formatDateLabel(sortedSessions[0].date) : 'Start planning'}</span></div><div className="schedule-tabs" role="tablist" aria-label="Schedule view"><button className={view === 'all' ? 'filter-tab active' : 'filter-tab'} type="button" role="tab" aria-selected={view === 'all'} onClick={() => setView('all')}>All sessions</button><button className={view === 'today' ? 'filter-tab active' : 'filter-tab'} type="button" role="tab" aria-selected={view === 'today'} onClick={() => setView('today')}>Today ({todayCount})</button></div>{visibleSessions.length ? <div className="schedule-list">{visibleSessions.map((session) => <ScheduleCard key={session.id} session={session} onEdit={openEdit} onDelete={onDelete} />)}</div> : <EmptyState title={view === 'today' ? 'No sessions today' : 'Make time for what matters'} description={view === 'today' ? 'Add a focused session to your schedule for today.' : 'Schedule your first focused study session.'} actionLabel="Add a session" onAction={openCreate} />}</section>
     </div>
   )
 }
