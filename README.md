@@ -5,11 +5,12 @@ A free, mobile-first student productivity PWA for planning tasks, study sessions
 ## Live project
 
 - Repository: [github.com/yashrajagawane/studyflow-pwa](https://github.com/yashrajagawane/studyflow-pwa)
-- Deployment: planned through the free Vercel tier in Phase 14
+- Live app: [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app)
+- Deployment: free Vercel Hobby tier, connected to the `master` branch
 
 ## Current status
 
-The local-first MVP is implemented through Phase 12. Phase 13 prepares the repository for collaboration and deployment. Tasks, progress, study sessions, settings, persistence, accessibility polish, and PWA packaging are complete.
+The local-first MVP is implemented through Phase 14. The public production deployment is live on Vercel, with GitHub Actions checks protecting the `master` branch workflow. Tasks, progress, study sessions, settings, persistence, accessibility polish, and PWA packaging are complete.
 
 ## Features
 
@@ -92,7 +93,7 @@ No paid domain, database, API, or Google Play Store publication is required.
 
 ## Roadmap
 
-- Phase 14: free Vercel deployment
+- Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final screenshots/documentation
 - Future: Supabase synchronization, export/import backups, notifications, focus tools, and AI study assistance
 

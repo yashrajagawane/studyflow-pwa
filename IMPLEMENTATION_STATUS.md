@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Preparing to start Phase 14 — Free Vercel deployment |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, and Phase 13 |
-| Overall progress | 14 of 17 roadmap phases complete — approximately 82% |
+| Active work | Phase 15 — Production acceptance and handoff |
+| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, Phase 13, and Phase 14 |
+| Overall progress | 15 of 17 roadmap phases complete — approximately 88% |
 | Functional MVP | Feature-complete local-first MVP; release, GitHub, deployment, and production acceptance remain |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
@@ -17,7 +17,7 @@ This living document records what is actually implemented and verified in the re
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Packaged and production-preview verified; public HTTPS offline test remains |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
-| Vercel | Not deployed |
+| Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
 | Cost | Free stack selected; no paid service is required for the MVP |
 
 ## Phase tracking
@@ -38,8 +38,8 @@ This living document records what is actually implemented and verified in the re
 | Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified. Actual installed/offline launch requires the public HTTPS deployment and remains in Phase 15 acceptance. |
 | Phase 12 — Production cleanup and performance | ✅ Complete | Removed unused Vite starter assets, switched to the original PWA icon, reduced PWA precache output, refreshed README/release metadata, and verified dependency/build health. |
 | Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
-| Phase 14 — Free Vercel deployment | ⬜ Not started | Repository connection, production build, and live URL are pending. |
-| Phase 15 — Production acceptance and handoff | ⬜ Not started | Public URL, PWA installation, offline, and final acceptance testing are pending. |
+| Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
+| Phase 15 — Production acceptance and handoff | 🟡 In progress | Run final production smoke tests, installability checks, responsive checks, and document the handoff. |
 | Phase 16 — Future product upgrades | 📝 Planned only | Supabase, sync, notifications, focus tools, and AI remain outside the MVP. |
 
 ## What is implemented now
@@ -311,6 +311,25 @@ This living document records what is actually implemented and verified in the re
 | GitHub push | ✅ `master` pushed successfully |
 | Working tree before status update | ✅ Clean |
 
+## Phase 14 delivered changes
+
+- Connected the public GitHub repository to Vercel's free Hobby tier.
+- Deployed the Vite production build from the `master` branch.
+- Confirmed the deployment completed successfully and assigned the public URL [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app).
+- Verified the live HTTPS page loads with the Student Study Planner dashboard and production title.
+
+## Phase 14 verification
+
+| Test | Result |
+| --- | --- |
+| Vercel project import | ✅ Passed from `yashrajagawane/studyflow-pwa` |
+| Framework preset | ✅ Vite |
+| Production branch | ✅ `master` |
+| Vercel Hobby deployment | ✅ Passed |
+| Public HTTPS URL | ✅ [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) |
+| Live app shell | ✅ Passed; title and dashboard rendered |
+| Public PWA/offline acceptance | ⚠️ Reserved for Phase 15 |
+
 ## Current risks and decisions
 
 | Risk or decision | Resolution |
@@ -325,7 +344,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Start Phase 14 by connecting the GitHub repository to Vercel's free tier, deploying the production build to a public HTTPS `vercel.app` URL, and recording the live URL.
+Start Phase 15 by running the final public production acceptance checklist: responsive smoke tests, PWA manifest/installability verification, service-worker registration, offline reload where supported, and final handoff documentation.
 
 ## Completion rule
 
