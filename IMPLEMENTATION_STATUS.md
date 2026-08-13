@@ -10,8 +10,8 @@ This living document records what is actually implemented and verified in the re
 | Completed phases | Phase 0 through Phase 16 |
 | Overall progress | Core roadmap phases 0 through 16 complete; optional Phase 17 backlog remains |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
-| Task CRUD | Implemented in memory; persistence is next |
-| localStorage persistence | Implemented with safe fallback and schema version |
+| Task CRUD | Implemented with local persistence |
+| localStorage persistence | Complete with safe fallback and schema version |
 | Real progress calculations | Implemented for daily and weekly deadline-based activity |
 | Schedule | Implemented with local persistence |
 | Settings/reset safety | Implemented with explicit confirmation |
@@ -37,7 +37,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 8 — Settings, recovery, and privacy | ✅ Complete | Added Settings page, local-only data explanation, privacy information, safe clear-all confirmation, and shared task/session reset actions. |
 | Phase 9 — UX polish, accessibility, and responsive QA | ✅ Complete | Added centralized focus-visible styling, larger touch targets, dark date/time controls, reduced-motion safeguards, modal focus management, body-scroll locking, and responsive QA checks. |
 | Phase 10 — PWA packaging and offline architecture | ✅ Complete | Added `vite-plugin-pwa`, standalone manifest, original scalable icon, auto-update registration, app-shell precaching, navigation fallback, and outdated-cache cleanup. |
-| Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified. Actual installed/offline launch requires the public HTTPS deployment and remains in Phase 15 acceptance. |
+| Phase 11 — Automated and manual testing | ✅ Complete with production follow-up | Production preview, manifest link, app shell, service-worker output, precache logic, and navigation fallback were verified; public HTTPS acceptance was completed in Phase 15. |
 | Phase 12 — Production cleanup and performance | ✅ Complete | Removed unused Vite starter assets, switched to the original PWA icon, reduced PWA precache output, refreshed README/release metadata, and verified dependency/build health. |
 | Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
