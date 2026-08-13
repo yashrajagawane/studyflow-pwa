@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 16 — Optional product upgrades |
-| Completed phases | Phase 0, Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6, Phase 7, Phase 8, Phase 9, Phase 10, Phase 11, Phase 12, Phase 13, Phase 14, and Phase 15 |
-| Overall progress | 16 of 17 roadmap phases complete — approximately 94% |
+| Active work | Phase 17 — Optional future integrations |
+| Completed phases | Phase 0 through Phase 16 |
+| Overall progress | Core roadmap phases 0 through 16 complete; optional Phase 17 backlog remains |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
 | Task CRUD | Implemented in memory; persistence is next |
 | localStorage persistence | Implemented with safe fallback and schema version |
@@ -42,7 +42,8 @@ This living document records what is actually implemented and verified in the re
 | Phase 13 — GitHub repository and collaboration workflow | ✅ Complete | Final README, project structure, privacy/deployment guidance, free GitHub Actions CI, clean-clone install/lint/build verification, and push to `origin/master` completed. |
 | Phase 14 — Free Vercel deployment | ✅ Complete | Imported `yashrajagawane/studyflow-pwa` from GitHub, deployed the `master` branch with the Vite preset, and verified the public HTTPS app at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app). |
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
-| Phase 16 — Optional product upgrades | 🟡 In progress | Local JSON backup portability is complete. Further upgrades such as sync, notifications, focus tools, and AI remain optional and require separate privacy/cost reviews. |
+| Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
+| Phase 17 — Optional future integrations | 📝 Planned only | Cloud sync, multi-device support, notifications, calendar integration, and AI require separate privacy, cost, security, and testing reviews. |
 
 ## What is implemented now
 
@@ -430,7 +431,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-The local backup portability milestone is complete. Any further Phase 16 upgrade should be selected only after a separate free-tier, privacy, and maintenance review.
+Phase 16 is complete. Future work belongs to the optional Phase 17 backlog and should not make the free local-first MVP dependent on paid services.
 
 ## Completion rule
 

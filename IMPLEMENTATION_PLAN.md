@@ -430,20 +430,33 @@ Tasks:
 
 Exit gate: the app is safe to demonstrate and the documentation matches reality.
 
-### Phase 16 — Future product upgrades
+### Phase 16 — Free local-first product upgrades ✅
 
-Only after the MVP is stable:
+Objective: complete the stable free upgrade layer without making the MVP dependent on accounts, servers, paid APIs, or external services.
+
+Completed scope:
+
+- Local JSON backup export/import with validation and restore confirmation
+- Current and longest study streak analytics
+- 25-minute focus timer with open-task context
+- Dashboard due-today, overdue, and next-up task queues
+- Task search, sorting, priority filtering, and subject filtering
+- Schedule Today view, search, and overlap protection
+- Direct dashboard task editing
+
+Exit gate: all implemented upgrades are verified, documented, committed, and pushed. Larger cloud and AI features move to the optional backlog below.
+
+### Phase 17 — Optional future integrations 📝
+
+These are deliberately outside the completed free local-first MVP:
 
 - Supabase authentication and cloud synchronization
-- Export/import backup improvements — first slice implemented and verified as local JSON backup in Settings
 - Multi-device support
 - Notifications and recurring tasks
-- Streaks, goals, XP, and badges
-- Pomodoro/focus mode
 - Exam countdown and calendar integration
 - AI-generated study plans and exam preparation assistant
 
-Each future upgrade gets its own data, privacy, cost, and testing review before implementation.
+Each future integration requires its own data, privacy, cost, security, and testing review before implementation.
 
 ## 6. Repository quality rules
 

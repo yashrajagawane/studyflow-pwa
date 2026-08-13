@@ -10,7 +10,7 @@ A free, mobile-first student productivity PWA for planning tasks, study sessions
 
 ## Current status
 
-The local-first MVP is implemented through Phase 15. The public production deployment is live on Vercel, and the production smoke-test and PWA acceptance checklist is complete. Tasks, progress, study sessions, settings, persistence, accessibility polish, and PWA packaging are complete.
+The local-first MVP is implemented through Phase 16. The public production deployment is live on Vercel, production acceptance is complete, and the free upgrade layer is complete. Tasks, progress, study sessions, settings, persistence, accessibility polish, PWA packaging, backups, focus mode, streaks, and planning filters are complete.
 
 ## Features
 
@@ -103,7 +103,7 @@ No paid domain, database, API, or Google Play Store publication is required.
 
 - Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final handoff ✅
-- Future: Supabase synchronization, notifications, focus tools, and AI study assistance
+- Future Phase 17: Supabase synchronization, multi-device support, notifications, calendar integration, and AI study assistance
 
 ## Author
 
