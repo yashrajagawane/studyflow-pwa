@@ -1,5 +1,6 @@
 import { EmptyState } from '../components/common/EmptyState'
 import { StatCard } from '../components/progress/StatCard'
+import { FocusTimer } from '../components/progress/FocusTimer'
 import { getProgressSummary, getStreakSummary, getWeeklySummary } from '../utils/progressUtils'
 
 export function Progress({ tasks, onAddTask }) {
@@ -25,6 +26,8 @@ export function Progress({ tasks, onAddTask }) {
         <StatCard label="Overdue" value={today.overdueCount} detail={today.overdueCount ? 'Needs attention' : 'Nothing overdue'} icon="!" />
         <StatCard label="Study streak" value={`${streak.currentStreak} ${streak.currentStreak === 1 ? 'day' : 'days'}`} detail={streak.activeToday ? 'Completed today' : 'Keep it going'} icon="✦" />
       </section>
+
+      <FocusTimer />
 
       <section className="panel weekly-detail-panel">
         <div className="panel-heading">
