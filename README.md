@@ -20,6 +20,7 @@ The local-first MVP is implemented through Phase 15. The public production deplo
 - Subjects, priorities, deadlines, notes, and overdue indicators
 - Daily and weekly progress calculated from real task data
 - Current study streak calculated from completed-task dates
+- Longest study streak from completion history
 - Client-side 25-minute focus timer
 - Add, edit, sort, and delete timed study sessions
 - Browser localStorage persistence across refreshes and reopening

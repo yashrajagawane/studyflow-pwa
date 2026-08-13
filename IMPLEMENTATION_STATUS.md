@@ -365,6 +365,7 @@ This living document records what is actually implemented and verified in the re
 - Added a derived current/longest study streak calculation based on completed-task timestamps.
 - Replaced the dashboard's static empty state with real due-today tasks and completion controls.
 - Added a client-side 25-minute focus timer with start, pause, restart, and reset controls.
+- Added the all-time longest streak to the Progress summary alongside the current streak.
 - Added open-task selection to focus sprints without changing task completion automatically.
 - Added task-library search across titles, subjects, and notes, combined with existing status filters.
 - Added a dashboard next-up queue showing up to three nearest future tasks when today has no tasks.
@@ -400,6 +401,7 @@ This living document records what is actually implemented and verified in the re
 | Study streak edge cases | ✅ Passed; today, yesterday, gaps, and consecutive dates covered by implementation logic |
 | Dashboard today task list | ✅ Implemented; real due-today tasks render with completion and edit actions |
 | Focus timer | ✅ Implemented; client-side 25-minute timer with accessible live time output |
+| Longest streak insight | ✅ Implemented; best consecutive completion run is shown on Progress |
 | Focus task context | ✅ Implemented; open tasks can be selected before starting a sprint |
 | Task search | ✅ Implemented; case-insensitive title, subject, and notes search |
 | Dashboard next-up queue | ✅ Implemented; nearest three open future tasks are derived from deadlines |

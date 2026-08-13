@@ -25,6 +25,7 @@ export function Progress({ tasks, onAddTask }) {
         <StatCard label="Upcoming" value={today.upcomingCount} detail="Open deadlines" icon="◷" />
         <StatCard label="Overdue" value={today.overdueCount} detail={today.overdueCount ? 'Needs attention' : 'Nothing overdue'} icon="!" />
         <StatCard label="Study streak" value={`${streak.currentStreak} ${streak.currentStreak === 1 ? 'day' : 'days'}`} detail={streak.activeToday ? 'Completed today' : 'Keep it going'} icon="✦" />
+        <StatCard label="Longest streak" value={`${streak.longestStreak} ${streak.longestStreak === 1 ? 'day' : 'days'}`} detail="Best completion run" icon="★" />
       </section>
 
       <FocusTimer tasks={tasks} />
