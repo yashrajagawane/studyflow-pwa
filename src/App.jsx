@@ -13,7 +13,7 @@ import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
-  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, storageError } = useStudyPlanner()
+  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, importAllData, storageError } = useStudyPlanner()
 
   const today = useMemo(
     () => new Intl.DateTimeFormat('en-IN', {
@@ -46,7 +46,7 @@ function App() {
           if (window.confirm(`Delete “${session.title}”?`)) deleteSession(session.id)
         }} />
       ) : activePage === 'Settings' ? (
-        <Settings taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} />
+        <Settings tasks={tasks} sessions={sessions} taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} onImport={importAllData} />
       ) : (
         <ComingSoon page={activePage} />
       )}

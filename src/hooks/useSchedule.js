@@ -28,6 +28,7 @@ export function useSchedule() {
   }, [setSessions])
 
   const clearSchedule = useCallback(() => setSessions([]), [setSessions])
+  const importSchedule = useCallback((nextSessions) => setSessions(nextSessions), [setSessions])
 
-  return { sessions, createSession, updateSession, deleteSession, clearSchedule, storageError }
+  return { sessions, createSession, updateSession, deleteSession, clearSchedule, importSchedule, storageError }
 }

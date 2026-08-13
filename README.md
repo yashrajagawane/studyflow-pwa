@@ -20,6 +20,7 @@ The local-first MVP is implemented through Phase 15. The public production deplo
 - Add, edit, sort, and delete timed study sessions
 - Browser localStorage persistence across refreshes and reopening
 - Safe clear-data confirmation
+- Local JSON backup export and import
 - Responsive dark UI for desktop and mobile
 - Installable PWA with service-worker app-shell caching
 - No login, backend, analytics, paid API, or secret required for the MVP
@@ -70,7 +71,7 @@ The production build generates a web manifest and service worker. For the most a
 
 ## Data and privacy
 
-The MVP stores tasks and sessions in the current browser's local storage. Data is device-local and is not sent to a server. Clearing data is available in Settings and requires explicit confirmation. Clearing browser storage or switching devices can remove access to local data.
+The MVP stores tasks and sessions in the current browser's local storage. Data is device-local and is not sent to a server. Settings includes a local JSON backup export/import flow for moving data between browsers. Clearing data is available in Settings and requires explicit confirmation. Clearing browser storage without a backup can remove access to local data.
 
 ## Free deployment
 
@@ -95,7 +96,7 @@ No paid domain, database, API, or Google Play Store publication is required.
 
 - Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final handoff ✅
-- Future: Supabase synchronization, export/import backups, notifications, focus tools, and AI study assistance
+- Future: Supabase synchronization, notifications, focus tools, and AI study assistance
 
 ## Author
 

@@ -42,6 +42,7 @@ export function useTasks() {
   }, [setTasks])
 
   const clearTasks = useCallback(() => setTasks([]), [setTasks])
+  const importTasks = useCallback((nextTasks) => setTasks(nextTasks), [setTasks])
 
-  return { tasks, createTask, updateTask, toggleTask, deleteTask, clearTasks, storageError }
+  return { tasks, createTask, updateTask, toggleTask, deleteTask, clearTasks, importTasks, storageError }
 }
