@@ -16,6 +16,7 @@ The local-first MVP is implemented through Phase 15. The public production deplo
 
 - Create, edit, complete, filter, and delete study tasks
 - Search tasks by title, subject, or notes
+- Sort tasks by deadline, priority, title, or date added
 - Subjects, priorities, deadlines, notes, and overdue indicators
 - Daily and weekly progress calculated from real task data
 - Current study streak calculated from completed-task dates
