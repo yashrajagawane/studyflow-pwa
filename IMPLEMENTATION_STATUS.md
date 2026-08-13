@@ -376,6 +376,7 @@ This living document records what is actually implemented and verified in the re
 - Dashboard edit actions now open the selected task directly in the task form.
 - Added task-library sorting by deadline, priority, title, and newest added.
 - Added a priority filter for quickly isolating high, medium, or low priority tasks.
+- Added a subject filter for focusing the task library on one course area.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -413,6 +414,7 @@ This living document records what is actually implemented and verified in the re
 | Dashboard task editing | ✅ Implemented; selected task opens directly in edit mode |
 | Task sorting | ✅ Implemented; deadline, priority, title, and newest options |
 | Priority filter | ✅ Implemented; filters task results by high, medium, or low priority |
+| Subject filter | ✅ Implemented; filters task results by configured subject |
 
 ## Current risks and decisions
 
