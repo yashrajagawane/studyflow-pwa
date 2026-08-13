@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { subjects } from '../../data/taskConstants'
 import { emptyScheduleSession } from '../../data/scheduleConstants'
-import { validateScheduleSession } from '../../utils/scheduleValidation'
+import { findScheduleConflict, validateScheduleSession } from '../../utils/scheduleValidation'
 
-export function ScheduleForm({ session, onSave, onCancel }) {
+export function ScheduleForm({ session, sessions = [], onSave, onCancel }) {
   const [form, setForm] = useState(session ? { ...session } : { ...emptyScheduleSession })
   const [errors, setErrors] = useState({})
 
@@ -24,6 +24,11 @@ export function ScheduleForm({ session, onSave, onCancel }) {
       setErrors(nextErrors)
       return
     }
+    const conflict = findScheduleConflict(form, sessions)
+    if (conflict) {
+      setErrors({ schedule: `This overlaps with “${conflict.title}” (${conflict.startTime}–${conflict.endTime}).` })
+      return
+    }
     onSave({ ...form, title: form.title.trim(), notes: form.notes.trim() })
   }
 
@@ -35,6 +40,7 @@ export function ScheduleForm({ session, onSave, onCancel }) {
       </div>
 
       <div className="form-grid">
+        {errors.schedule ? <p className="field-error field-wide" role="alert">{errors.schedule}</p> : null}
         <label className="field field-wide"><span>Session title</span><input autoFocus value={form.title} onChange={(event) => updateField('title', event.target.value)} placeholder="e.g. DBMS revision" maxLength={120} />{errors.title ? <small className="field-error">{errors.title}</small> : null}</label>
         <label className="field"><span>Subject</span><select value={form.subject} onChange={(event) => updateField('subject', event.target.value)}>{subjects.map((subject) => <option key={subject} value={subject}>{subject}</option>)}</select>{errors.subject ? <small className="field-error">{errors.subject}</small> : null}</label>
         <label className="field"><span>Date</span><input type="date" value={form.date} onChange={(event) => updateField('date', event.target.value)} />{errors.date ? <small className="field-error">{errors.date}</small> : null}</label>

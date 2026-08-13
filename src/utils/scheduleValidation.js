@@ -16,3 +16,7 @@ export function validateScheduleSession(session) {
 
   return errors
 }
+
+export function findScheduleConflict(session, sessions) {
+  return sessions.find((existing) => existing.id !== session.id && existing.date === session.date && session.startTime < existing.endTime && session.endTime > existing.startTime)
+}

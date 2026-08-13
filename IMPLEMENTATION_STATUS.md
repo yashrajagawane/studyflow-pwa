@@ -369,6 +369,7 @@ This living document records what is actually implemented and verified in the re
 - Added task-library search across titles, subjects, and notes, combined with existing status filters.
 - Added a dashboard next-up queue showing up to three nearest future tasks when today has no tasks.
 - Prioritized up to three overdue tasks in the dashboard queue before future tasks.
+- Added schedule overlap detection for sessions on the same date.
 
 ## Phase 16 implementation — Study streak analytics
 
@@ -399,6 +400,7 @@ This living document records what is actually implemented and verified in the re
 | Task search | ✅ Implemented; case-insensitive title, subject, and notes search |
 | Dashboard next-up queue | ✅ Implemented; nearest three open future tasks are derived from deadlines |
 | Dashboard urgent queue | ✅ Implemented; overdue tasks take priority over future tasks |
+| Schedule conflict detection | ✅ Implemented; overlapping sessions are rejected before persistence |
 
 ## Current risks and decisions
 
