@@ -3,11 +3,13 @@ import { ConfirmationModal } from '../components/common/ConfirmationModal'
 import { downloadBackup, parseBackup } from '../services/backupService'
 import { parseSyncPayload } from '../services/syncService'
 
-export function Settings({ tasks, sessions, taskCount, sessionCount, onClearAll, onImport, onMerge, reminders }) {
+export function Settings({ tasks, sessions, taskCount, sessionCount, onClearAll, onImport, onMerge, reminders, cloudSync }) {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [importPending, setImportPending] = useState(null)
   const [backupMessage, setBackupMessage] = useState(null)
   const [importMode, setImportMode] = useState('replace')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const fileInput = useRef(null)
 
   const clearData = () => {
@@ -31,6 +33,12 @@ export function Settings({ tasks, sessions, taskCount, sessionCount, onClearAll,
     }
   }
 
+  const submitCloudAuth = async (event, mode) => {
+    event.preventDefault()
+    const success = mode === 'sign-up' ? await cloudSync.signUp(email, password) : await cloudSync.signIn(email, password)
+    if (success) setPassword('')
+  }
+
   return (
     <div className="settings-page">
       <div className="page-intro"><div><p className="card-kicker">PREFERENCES</p><h2>Settings</h2><p className="page-description">Understand and manage how Study Planner works on this device.</p></div></div>
@@ -45,6 +53,8 @@ export function Settings({ tasks, sessions, taskCount, sessionCount, onClearAll,
       <section className="panel backup-zone"><div><p className="card-kicker">DATA PORTABILITY</p><h2>Backup your planner</h2><p>Export tasks and sessions to a JSON file, or restore a previous backup on this device. Your data stays local.</p>{backupMessage ? <p className="backup-message" role="status">{backupMessage}</p> : null}</div><div className="backup-actions"><button className="secondary-button" type="button" onClick={exportData} disabled={taskCount === 0 && sessionCount === 0}>Export backup</button><button className="secondary-button" type="button" onClick={() => { setImportMode('merge'); fileInput.current?.click() }}>Merge backup</button><button className="primary-button" type="button" onClick={() => { setImportMode('replace'); fileInput.current?.click() }}>Import backup</button><input ref={fileInput} type="file" accept="application/json,.json" onChange={importData} hidden /></div></section>
 
       <section className="panel backup-zone"><div><p className="card-kicker">OPTIONAL REMINDERS</p><h2>Browser reminders</h2><p>Get a reminder up to 15 minutes before a scheduled session while this app is open. Permission is optional and stays in this browser.</p><p className="backup-message" role="status">{!reminders.remindersSupported ? 'This browser does not support notifications.' : reminders.remindersPermission === 'denied' ? 'Notifications are blocked. Allow them in your browser settings to enable reminders.' : reminders.remindersEnabled ? 'Reminders are enabled on this device.' : 'Reminders are currently off.'}</p></div><div className="backup-actions"><button className="secondary-button" type="button" onClick={reminders.requestReminders} disabled={!reminders.remindersSupported || reminders.remindersPermission === 'denied'}>{reminders.remindersEnabled ? 'Reminders enabled' : 'Enable reminders'}</button></div></section>
+
+      <section className="panel cloud-zone"><div><p className="card-kicker">OPTIONAL CLOUD SYNC</p><h2>Sync across devices</h2><p>{cloudSync.cloudConfigured ? 'Create a free Supabase account to keep your planner available across browsers. Your local data remains available if you sign out.' : 'Cloud sync is ready but not configured for this deployment. Add the Supabase environment variables described in the README to enable it.'}</p>{cloudSync.cloudMessage ? <p className={cloudSync.cloudStatus === 'error' ? 'cloud-message error' : 'cloud-message'} role="status">{cloudSync.cloudMessage}</p> : null}</div>{cloudSync.cloudUser ? <div className="backup-actions"><span className="settings-version">{cloudSync.cloudUser.email}</span><button className="secondary-button" type="button" onClick={cloudSync.syncNow} disabled={cloudSync.cloudStatus === 'working'}>{cloudSync.cloudStatus === 'working' ? 'Syncing…' : 'Sync now'}</button><button className="secondary-button" type="button" onClick={cloudSync.signOut}>Sign out</button></div> : <form className="cloud-auth-form" onSubmit={(event) => submitCloudAuth(event, 'sign-in')}><label className="field"><span>Email</span><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" required /></label><label className="field"><span>Password</span><input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="At least 6 characters" minLength="6" autoComplete="current-password" required /></label><div className="backup-actions"><button className="secondary-button" type="submit" disabled={!cloudSync.cloudConfigured || cloudSync.cloudStatus === 'working'}>Sign in</button><button className="secondary-button" type="button" onClick={(event) => submitCloudAuth(event, 'sign-up')} disabled={!cloudSync.cloudConfigured || cloudSync.cloudStatus === 'working'}>Create account</button></div></form>}</section>
 
       <section className="panel settings-info"><div className="info-row"><span aria-hidden="true">✓</span><div><h3>Privacy by default</h3><p>The MVP has no login, analytics, backend, or external API. Your planner data stays in your browser.</p></div></div><div className="info-row"><span aria-hidden="true">◷</span><div><h3>PWA ready later</h3><p>Once PWA packaging is added, this same local data model will continue to work from the installed app.</p></div></div></section>
 

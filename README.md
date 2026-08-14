@@ -31,6 +31,7 @@ The local-first MVP and free integration layer are implemented through Phase 17.
 - Daily and weekly recurring tasks
 - iCalendar export for planned sessions
 - Optional browser reminders while the app is open
+- Optional Supabase email authentication and cloud synchronization
 - Responsive dark UI for desktop and mobile
 - Installable PWA with service-worker app-shell caching
 - No login, backend, analytics, paid API, or secret required for the MVP
@@ -69,6 +70,18 @@ npm run build
 npm run preview
 ```
 
+## Optional Supabase cloud sync
+
+Cloud sync is disabled unless both Vite variables are configured. The local-only app remains fully functional without them.
+
+1. Create a free Supabase project.
+2. In the Supabase SQL Editor, run [`supabase/schema.sql`](supabase/schema.sql). The table is protected with Row Level Security so users can access only their own document.
+3. Copy `.env.example` to `.env.local` and fill in the project URL and publishable key from Supabase's Connect dialog.
+4. Restart Vite or trigger a new Vercel deployment after adding the same `VITE_` variables in the project settings.
+5. Open Settings, create an account or sign in, then choose **Sync now**.
+
+Only the app's task and session JSON is synchronized. Never put a Supabase secret/service-role key in this frontend.
+
 ## PWA testing
 
 The production build generates a web manifest and service worker. For the most accurate installation test, use the final HTTPS Vercel URL in Chrome on Android:
@@ -81,7 +94,7 @@ The production build generates a web manifest and service worker. For the most a
 
 ## Data and privacy
 
-The MVP stores tasks and sessions in the current browser's local storage. Data is device-local and is not sent to a server. Settings includes a local JSON backup export/import flow for moving data between browsers. Clearing data is available in Settings and requires explicit confirmation. Clearing browser storage without a backup can remove access to local data.
+Without Supabase configuration, the app stores tasks and sessions only in the current browser. When optional cloud sync is enabled, the signed-in user's task and session JSON is stored in Supabase under Row Level Security. Settings includes local JSON backup export/import and merge flows. Clearing data is available in Settings and requires explicit confirmation.
 
 ## Free deployment
 
@@ -107,8 +120,8 @@ No paid domain, database, API, or Google Play Store publication is required.
 - Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final handoff ✅
 - Phase 17: free local recurring tasks, calendar export, and foreground reminders ✅
-- Phase 18 in progress: provider-neutral sync readiness and local merge support
-- Future Phase 18 steps: Supabase synchronization, multi-device support, background push, and AI study assistance
+- Phase 18 in progress: Supabase email authentication and cloud synchronization
+- Future Phase 18 steps: multi-device conflict UX, background push, and AI study assistance
 
 ## Author
 

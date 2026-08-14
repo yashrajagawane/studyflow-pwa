@@ -17,6 +17,7 @@ This living document records what is actually implemented and verified in the re
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Public HTTPS manifest, standalone metadata, service worker, and navigation fallback verified |
 | Backup portability | JSON export/import implemented and visible in the live Settings page |
+| Cloud synchronization | Supabase adapter, email auth UI, RLS schema, and manual Sync now flow implemented; requires optional environment configuration |
 | Study streak | Current and longest streaks derived from completed-task timestamps |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
@@ -44,7 +45,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
 | Phase 17 — Free local-first integrations | ✅ Complete | Recurring tasks, iCalendar export, and opt-in foreground browser reminders are implemented, verified, documented, committed, and pushed. |
-| Phase 18 — External integrations backlog | 🟡 In progress | Modification timestamps, validated sync payloads, and local latest-record-wins merge are implemented first; provider connection remains next. |
+| Phase 18 — External integrations backlog | 🟡 In progress | Supabase email auth, RLS-backed planner storage, and manual latest-record-wins Sync now flow are implemented; deployment configuration and multi-device UX remain. |
 
 ## What is implemented now
 
@@ -467,6 +468,28 @@ Phase 17 is complete. Phase 18 has started with provider-neutral sync readiness;
 - Added `src/services/syncService.js` with validated sync payload parsing and deterministic latest-record-wins merging.
 - Added a Settings “Merge backup” flow that combines records instead of replacing local data.
 - Kept the implementation provider-neutral so no account, secret, backend, or paid service is required.
+
+## Phase 18 implementation — Supabase cloud synchronization
+
+- Added the optional `@supabase/supabase-js` client behind `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`.
+- Added email sign-in, account creation, sign-out, and manual Sync now controls in Settings.
+- Added `supabase/schema.sql` with a per-user planner document and read/insert/update RLS policies.
+- Added `.env.example` and deployment instructions; no service-role key is used in the browser.
+- Kept cloud sync opt-in: missing variables leave the existing local-only experience unchanged.
+
+## Phase 18 verification
+
+| Test | Result |
+| --- | --- |
+| Supabase client is optional when env variables are absent | ✅ Passed; local production build succeeds without `.env.local` |
+| Email sign-in/sign-up/sign-out controls | ✅ Implemented through Supabase Auth |
+| Per-user planner document schema | ✅ Implemented in `supabase/schema.sql` |
+| Row Level Security policies | ✅ Read/insert/update restricted to `auth.uid() = user_id` |
+| Manual cloud merge | ✅ Loads remote data, merges by record timestamp, and saves the combined document |
+| No service-role key in frontend | ✅ Only publishable/anon environment key is accepted |
+| `npm run lint` | ✅ Passed |
+| `npm run build` | ✅ Passed |
+| `git diff --check` | ✅ Passed |
 
 ## Completion rule
 

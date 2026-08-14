@@ -472,6 +472,8 @@ No external account, secret, paid API, or backend is required for the completed 
 
 Current implementation slice: sync-readiness is being built first through modification timestamps and a local merge path. This establishes conflict behavior before any external provider is connected.
 
+Supabase slice: add optional browser authentication and a single RLS-protected planner document, using explicit manual sync so users control when local data is uploaded or merged.
+
 ## 6. Repository quality rules
 
 - Keep changes small and explain the purpose of each phase.

@@ -12,12 +12,14 @@ import { Settings } from './pages/Settings'
 import { getProgressSummary, getWeeklySummary } from './utils/progressUtils'
 import { getLocalDateInputValue } from './utils/dateUtils'
 import { useBrowserReminders } from './hooks/useBrowserReminders'
+import { useCloudSync } from './hooks/useCloudSync'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
   const [taskToEdit, setTaskToEdit] = useState(null)
   const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, importAllData, mergeAllData, storageError } = useStudyPlanner()
   const reminders = useBrowserReminders(sessions)
+  const cloudSync = useCloudSync(tasks, sessions, mergeAllData)
 
   const today = useMemo(
     () => new Intl.DateTimeFormat('en-IN', {
@@ -52,7 +54,7 @@ function App() {
           if (window.confirm(`Delete “${session.title}”?`)) deleteSession(session.id)
         }} />
       ) : activePage === 'Settings' ? (
-        <Settings tasks={tasks} sessions={sessions} taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} onImport={importAllData} onMerge={mergeAllData} reminders={reminders} />
+        <Settings tasks={tasks} sessions={sessions} taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} onImport={importAllData} onMerge={mergeAllData} reminders={reminders} cloudSync={cloudSync} />
       ) : (
         <ComingSoon page={activePage} />
       )}
