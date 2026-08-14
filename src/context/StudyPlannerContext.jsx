@@ -1,6 +1,7 @@
 import { useTasks } from '../hooks/useTasks'
 import { useSchedule } from '../hooks/useSchedule'
 import { StudyPlannerContext } from './studyPlannerContext'
+import { mergeSyncData } from '../services/syncService'
 
 export function StudyPlannerProvider({ children }) {
   const taskState = useTasks()
@@ -13,5 +14,10 @@ export function StudyPlannerProvider({ children }) {
     taskState.importTasks(data.tasks)
     scheduleState.importSchedule(data.sessions)
   }
-  return <StudyPlannerContext.Provider value={{ ...taskState, ...scheduleState, clearAllData, importAllData, storageError: taskState.storageError || scheduleState.storageError }}>{children}</StudyPlannerContext.Provider>
+  const mergeAllData = (data) => {
+    const merged = mergeSyncData({ tasks: taskState.tasks, sessions: scheduleState.sessions }, data)
+    taskState.importTasks(merged.tasks)
+    scheduleState.importSchedule(merged.sessions)
+  }
+  return <StudyPlannerContext.Provider value={{ ...taskState, ...scheduleState, clearAllData, importAllData, mergeAllData, storageError: taskState.storageError || scheduleState.storageError }}>{children}</StudyPlannerContext.Provider>
 }
