@@ -470,6 +470,8 @@ These require a separate privacy, security, reliability, and cost review:
 
 No external account, secret, paid API, or backend is required for the completed Phase 17 experience.
 
+Current implementation slice: sync-readiness is being built first through modification timestamps and a local merge path. This establishes conflict behavior before any external provider is connected.
+
 ## 6. Repository quality rules
 
 - Keep changes small and explain the purpose of each phase.

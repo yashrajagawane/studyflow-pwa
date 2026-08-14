@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 18 — External integrations backlog |
+| Active work | Phase 18 — Sync readiness |
 | Completed phases | Phase 0 through Phase 17 |
-| Overall progress | Core roadmap phases 0 through 17 complete; Phase 18 is planned only |
+| Overall progress | Core roadmap phases 0 through 17 complete; Phase 18 sync-readiness slice in progress |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
 | Task CRUD | Implemented with local persistence |
 | localStorage persistence | Complete with safe fallback and schema version |
@@ -44,7 +44,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
 | Phase 17 — Free local-first integrations | ✅ Complete | Recurring tasks, iCalendar export, and opt-in foreground browser reminders are implemented, verified, documented, committed, and pushed. |
-| Phase 18 — External integrations backlog | 📝 Planned only | Supabase sync, multi-device support, background push, and AI assistance require a separate privacy, security, and cost review. |
+| Phase 18 — External integrations backlog | 🟡 In progress | Modification timestamps, validated sync payloads, and local latest-record-wins merge are implemented first; provider connection remains next. |
 
 ## What is implemented now
 
@@ -432,7 +432,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Phase 17 is complete. Future work belongs to the Phase 18 external integrations backlog and should not make the free local-first MVP dependent on paid services.
+Phase 17 is complete. Phase 18 has started with provider-neutral sync readiness; connecting Supabase remains a separate step requiring user account configuration and privacy review.
 
 ## Phase 17 implementation — Local recurring tasks
 
@@ -460,6 +460,13 @@ Phase 17 is complete. Future work belongs to the Phase 18 external integrations 
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
+
+## Phase 18 implementation — Sync readiness
+
+- Added `updatedAt` timestamps to newly created and edited tasks and sessions, while preserving compatibility with older local records.
+- Added `src/services/syncService.js` with validated sync payload parsing and deterministic latest-record-wins merging.
+- Added a Settings “Merge backup” flow that combines records instead of replacing local data.
+- Kept the implementation provider-neutral so no account, secret, backend, or paid service is required.
 
 ## Completion rule
 

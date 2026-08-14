@@ -16,7 +16,7 @@ import { useBrowserReminders } from './hooks/useBrowserReminders'
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
   const [taskToEdit, setTaskToEdit] = useState(null)
-  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, importAllData, storageError } = useStudyPlanner()
+  const { tasks, createTask, updateTask, toggleTask, deleteTask, sessions, createSession, updateSession, deleteSession, clearAllData, importAllData, mergeAllData, storageError } = useStudyPlanner()
   const reminders = useBrowserReminders(sessions)
 
   const today = useMemo(
@@ -52,7 +52,7 @@ function App() {
           if (window.confirm(`Delete “${session.title}”?`)) deleteSession(session.id)
         }} />
       ) : activePage === 'Settings' ? (
-        <Settings tasks={tasks} sessions={sessions} taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} onImport={importAllData} reminders={reminders} />
+        <Settings tasks={tasks} sessions={sessions} taskCount={tasks.length} sessionCount={sessions.length} onClearAll={clearAllData} onImport={importAllData} onMerge={mergeAllData} reminders={reminders} />
       ) : (
         <ComingSoon page={activePage} />
       )}

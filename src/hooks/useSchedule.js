@@ -16,11 +16,12 @@ export function useSchedule() {
   }, [storedSessions, setSessions])
 
   const createSession = useCallback((session) => {
-    setSessions((current) => [...current, { ...session, id: createId(), createdAt: new Date().toISOString() }])
+    const now = new Date().toISOString()
+    setSessions((current) => [...current, { ...session, id: createId(), createdAt: now, updatedAt: now }])
   }, [setSessions])
 
   const updateSession = useCallback((session) => {
-    setSessions((current) => current.map((item) => item.id === session.id ? session : item))
+    setSessions((current) => current.map((item) => item.id === session.id ? { ...session, updatedAt: new Date().toISOString() } : item))
   }, [setSessions])
 
   const deleteSession = useCallback((sessionId) => {

@@ -23,26 +23,29 @@ export function useTasks() {
   }, [storedTasks, setTasks])
 
   const createTask = useCallback((task) => {
+    const now = new Date().toISOString()
     setTasks((current) => [...current, {
       ...task,
       id: createId(),
       status: 'pending',
-      createdAt: new Date().toISOString(),
+      createdAt: now,
+      updatedAt: now,
       completedAt: null,
     }])
   }, [setTasks])
 
   const updateTask = useCallback((task) => {
-    setTasks((current) => current.map((item) => item.id === task.id ? task : item))
+    setTasks((current) => current.map((item) => item.id === task.id ? { ...task, updatedAt: new Date().toISOString() } : item))
   }, [setTasks])
 
   const toggleTask = useCallback((taskId) => {
     setTasks((current) => current.flatMap((task) => {
       if (task.id !== taskId) return task
       const completed = task.status !== 'completed'
-      const updated = { ...task, status: completed ? 'completed' : 'pending', completedAt: completed ? new Date().toISOString() : null }
+      const now = new Date().toISOString()
+      const updated = { ...task, status: completed ? 'completed' : 'pending', completedAt: completed ? now : null, updatedAt: now }
       if (!completed || task.recurrence === 'none' || !task.deadline) return updated
-      return [updated, { ...task, id: createId(), deadline: getNextDeadline(task.deadline, task.recurrence), status: 'pending', completedAt: null, createdAt: new Date().toISOString() }]
+      return [updated, { ...task, id: createId(), deadline: getNextDeadline(task.deadline, task.recurrence), status: 'pending', completedAt: null, createdAt: now, updatedAt: now }]
     }))
   }, [setTasks])
 
