@@ -6,6 +6,15 @@ function recordTime(record) {
   return Date.parse(record.updatedAt || record.completedAt || record.createdAt || '') || 0
 }
 
+function sameRecordContent(left, right) {
+  const normalize = (record) => {
+    const content = { ...record }
+    delete content.updatedAt
+    return JSON.stringify(content)
+  }
+  return normalize(left) === normalize(right)
+}
+
 function mergeRecords(localRecords, incomingRecords) {
   const records = new Map(localRecords.map((record) => [record.id, record]))
   incomingRecords.forEach((incoming) => {
@@ -30,4 +39,22 @@ export function parseSyncPayload(text) {
 
 export function mergeSyncData(localData, incomingData) {
   return { tasks: mergeRecords(localData.tasks, incomingData.tasks), sessions: mergeRecords(localData.sessions, incomingData.sessions) }
+}
+
+export function findSyncConflicts(localData, incomingData) {
+  const conflicts = []
+  for (const [type, localRecords, incomingRecords] of [['task', localData.tasks, incomingData.tasks], ['session', localData.sessions, incomingData.sessions]]) {
+    const localById = new Map(localRecords.map((record) => [record.id, record]))
+    incomingRecords.forEach((incoming) => {
+      const local = localById.get(incoming.id)
+      if (!local || sameRecordContent(local, incoming)) return
+      conflicts.push({
+        id: incoming.id,
+        type,
+        title: incoming.title || local.title || 'Untitled record',
+        winner: recordTime(incoming) >= recordTime(local) ? 'cloud' : 'this device',
+      })
+    })
+  }
+  return conflicts
 }

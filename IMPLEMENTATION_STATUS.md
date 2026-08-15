@@ -491,6 +491,7 @@ Phase 17 is complete and the Supabase cloud-sync setup in Phase 18 is verified. 
 | Vercel environment configuration | ✅ Production and Preview variables added; deployment completed successfully |
 | Demo account and live sign-in | ✅ Confirmed demo user signed in successfully on the public app |
 | Live cloud sync and database row | ✅ Demo task synced; Supabase query verified 1 planner row with 1 task and 0 sessions |
+| Multi-device conflict UI | ✅ Sync now reports resolved conflicts and lists affected tasks/sessions with the winning copy |
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |
