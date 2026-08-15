@@ -6,9 +6,9 @@ This living document records what is actually implemented and verified in the re
 
 | Item | Current status |
 | --- | --- |
-| Active work | Phase 18 — Sync readiness |
+| Active work | Phase 18 — Optional advanced integrations |
 | Completed phases | Phase 0 through Phase 17 |
-| Overall progress | Core roadmap phases 0 through 17 complete; Phase 18 sync-readiness slice in progress |
+| Overall progress | Core roadmap phases 0 through 18 cloud-sync setup complete; optional Phase 18 enhancements remain |
 | Functional MVP | Feature-complete local-first MVP; GitHub, free deployment, and production acceptance are complete |
 | Task CRUD | Implemented with local persistence |
 | localStorage persistence | Complete with safe fallback and schema version |
@@ -17,7 +17,7 @@ This living document records what is actually implemented and verified in the re
 | Settings/reset safety | Implemented with explicit confirmation |
 | PWA/offline support | Public HTTPS manifest, standalone metadata, service worker, and navigation fallback verified |
 | Backup portability | JSON export/import implemented and visible in the live Settings page |
-| Cloud synchronization | Supabase adapter, email auth UI, RLS schema, and manual Sync now flow implemented; requires optional environment configuration |
+| Cloud synchronization | Supabase project, RLS schema, Vercel variables, demo account, live sign-in, and database sync verified |
 | Study streak | Current and longest streaks derived from completed-task timestamps |
 | GitHub | Repository pushed to `origin/master`; GitHub Actions CI added |
 | Vercel | Live at [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app) on the free Hobby tier |
@@ -45,7 +45,7 @@ This living document records what is actually implemented and verified in the re
 | Phase 15 — Production acceptance and handoff | ✅ Complete | Public HTTPS app shell, primary navigation, manifest, standalone metadata, service-worker fallback, and production handoff documentation were verified. Mobile viewport emulation was unavailable in the browser environment. |
 | Phase 16 — Free local-first product upgrades | ✅ Complete | Backup portability, streak analytics, focus mode, dashboard queues, task-library controls, schedule views/search, conflict protection, and direct task editing are implemented, verified, documented, and pushed. |
 | Phase 17 — Free local-first integrations | ✅ Complete | Recurring tasks, iCalendar export, and opt-in foreground browser reminders are implemented, verified, documented, committed, and pushed. |
-| Phase 18 — External integrations backlog | 🟡 In progress | Supabase email auth, RLS-backed planner storage, and manual latest-record-wins Sync now flow are implemented; deployment configuration and multi-device UX remain. |
+| Phase 18 — External integrations backlog | 🟡 In progress | Supabase email auth, RLS-backed planner storage, Vercel configuration, live demo sync, and latest-record-wins merge are verified; multi-device UX, background push, and AI remain optional. |
 
 ## What is implemented now
 
@@ -433,7 +433,7 @@ This living document records what is actually implemented and verified in the re
 
 ## Next action
 
-Phase 17 is complete. Phase 18 has started with provider-neutral sync readiness; connecting Supabase remains a separate step requiring user account configuration and privacy review.
+Phase 17 is complete and the Supabase cloud-sync setup in Phase 18 is verified. Remaining work is optional multi-device conflict UX, background push notifications, and AI assistance.
 
 ## Phase 17 implementation — Local recurring tasks
 
@@ -487,6 +487,10 @@ Phase 17 is complete. Phase 18 has started with provider-neutral sync readiness;
 | Row Level Security policies | ✅ Read/insert/update restricted to `auth.uid() = user_id` |
 | Manual cloud merge | ✅ Loads remote data, merges by record timestamp, and saves the combined document |
 | No service-role key in frontend | ✅ Only publishable/anon environment key is accepted |
+| Supabase project and schema execution | ✅ Free project created; `planner_documents` table and RLS policies applied |
+| Vercel environment configuration | ✅ Production and Preview variables added; deployment completed successfully |
+| Demo account and live sign-in | ✅ Confirmed demo user signed in successfully on the public app |
+| Live cloud sync and database row | ✅ Demo task synced; Supabase query verified 1 planner row with 1 task and 0 sessions |
 | `npm run lint` | ✅ Passed |
 | `npm run build` | ✅ Passed |
 | `git diff --check` | ✅ Passed |

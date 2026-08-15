@@ -120,8 +120,8 @@ No paid domain, database, API, or Google Play Store publication is required.
 - Phase 14: free Vercel deployment ✅
 - Phase 15: production acceptance and final handoff ✅
 - Phase 17: free local recurring tasks, calendar export, and foreground reminders ✅
-- Phase 18 in progress: Supabase email authentication and cloud synchronization
-- Future Phase 18 steps: multi-device conflict UX, background push, and AI study assistance
+- Phase 18: Supabase email authentication and cloud synchronization ✅
+- Optional future enhancements: multi-device conflict UX, background push, and AI study assistance
 
 ## Author
 
