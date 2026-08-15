@@ -4,6 +4,7 @@ A free, mobile-first student productivity PWA for planning tasks, study sessions
 
 ## Live project
 
+
 - Repository: [github.com/yashrajagawane/studyflow-pwa](https://github.com/yashrajagawane/studyflow-pwa)
 - Live app: [studyflow-pwa.vercel.app](https://studyflow-pwa.vercel.app)
 - Deployment: free Vercel Hobby tier, connected to the `master` branch
