@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Student Study Planner</title>
-  <desc id="desc">A purple study planner book on a dark background.</desc>
+  <desc id="desc">A Midnight Indigo study planner book with blue and cyan accents.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#241239" />
-      <stop offset="1" stop-color="#0b0911" />
+      <stop offset="0" stop-color="#162541" />
+      <stop offset="1" stop-color="#080b14" />
     </linearGradient>
     <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#d1a7ff" />
-      <stop offset="1" stop-color="#7b42bd" />
+      <stop offset="0" stop-color="#a7bbff" />
+      <stop offset="1" stop-color="#5275c9" />
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="112" fill="url(#background)" />
-  <circle cx="382" cy="124" r="13" fill="#8ff0de" />
-  <circle cx="118" cy="382" r="10" fill="#d1a7ff" />
+  <circle cx="382" cy="124" r="13" fill="#67e8f9" />
+  <circle cx="118" cy="382" r="10" fill="#7c9cff" />
   <path d="M120 150c0-18 14-32 32-32h208c18 0 32 14 32 32v222c0 18-14 32-32 32H152c-18 0-32-14-32-32z" fill="url(#cover)" />
-  <path d="M152 118h208c18 0 32 14 32 32v23H120v-23c0-18 14-32 32-32z" fill="#f1ddff" opacity=".35" />
-  <path d="M184 118v286M328 118v286" stroke="#6b399f" stroke-width="12" opacity=".55" />
-  <path d="M178 218h156M178 270h156M178 322h112" stroke="#fff7ff" stroke-width="17" stroke-linecap="round" opacity=".9" />
-  <path d="M178 367h70" stroke="#8ff0de" stroke-width="17" stroke-linecap="round" />
+  <path d="M152 118h208c18 0 32 14 32 32v23H120v-23c0-18 14-32 32-32z" fill="#dbe7ff" opacity=".35" />
+  <path d="M184 118v286M328 118v286" stroke="#304878" stroke-width="12" opacity=".75" />
+  <path d="M178 218h156M178 270h156M178 322h112" stroke="#f4f7ff" stroke-width="17" stroke-linecap="round" opacity=".9" />
+  <path d="M178 367h70" stroke="#67e8f9" stroke-width="17" stroke-linecap="round" />
 </svg>
