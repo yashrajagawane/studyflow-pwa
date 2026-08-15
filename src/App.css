@@ -40,7 +40,6 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 h1 { margin-bottom: 0; font-size: clamp(25px, 3vw, 34px); letter-spacing: -.8px; }
 h2 { margin-bottom: 0; font-size: 21px; letter-spacing: -.45px; }
-.profile-button { width: 44px; height: 44px; border: 1px solid #624486; border-radius: 50%; color: #f4eaff; background: #36234d; cursor: pointer; font-weight: 700; }
 .dashboard { display: grid; gap: 20px; }
 .hero-card { display: flex; align-items: center; justify-content: space-between; min-height: 230px; overflow: hidden; padding: clamp(25px, 5vw, 42px); border: 1px solid #3a2756; border-radius: 20px; background: linear-gradient(110deg, #231338, #30204b 55%, #1b132d); }
 .hero-card h2 { max-width: 490px; margin: 8px 0 12px; font-size: clamp(24px, 3.7vw, 38px); letter-spacing: -1px; }

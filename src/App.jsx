@@ -36,7 +36,6 @@ function App() {
       activePage={activePage}
       date={today}
       onNavigate={setActivePage}
-      onProfileClick={() => setActivePage('Settings')}
     >
       <StorageNotice error={storageError} />
       {activePage === 'Dashboard' ? (
