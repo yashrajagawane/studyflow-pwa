@@ -53,6 +53,18 @@ It is local-first by default: the planner works immediately in the browser and k
 
 </div>
 
+### At a glance
+
+<table>
+  <tr>
+    <td align="center" width="33%"><strong>Local-first</strong><br />Works without an account or backend.</td>
+    <td align="center" width="33%"><strong>Mobile-first</strong><br />Responsive and installable from HTTPS.</td>
+    <td align="center" width="33%"><strong>Free by design</strong><br />Runs on free, widely available services.</td>
+  </tr>
+</table>
+
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Product showcase
 
 The interface uses a Midnight Indigo visual language: deep blue-black surfaces, indigo actions, cyan accents, soft borders, and readable contrast for long study sessions.
@@ -110,6 +122,33 @@ Choose the next task  ->  Schedule focused time  ->  Complete the work  ->  Lear
 
 The result is deliberately practical: fewer planning decisions, clearer next actions, and a progress view based on real completed work rather than empty goals.
 
+## What makes it different
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>Product strengths</h3>
+      <ul>
+        <li>Starts useful before sign-in.</li>
+        <li>Turns broad goals into manageable actions.</li>
+        <li>Shows progress from completed work.</li>
+        <li>Supports both quick planning and focused sessions.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>Engineering strengths</h3>
+      <ul>
+        <li>LocalStorage persistence with explicit recovery tools.</li>
+        <li>Optional Supabase sync protected by row-level security.</li>
+        <li>Vite-built PWA with app-shell caching.</li>
+        <li>Responsive controls and reduced-motion support.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Feature map
 
 | Area | What is included |
@@ -146,6 +185,8 @@ flowchart LR
 5. Review the Progress page at the end of the day or week.
 6. Export a backup or enable cloud sync when the planner needs to move to another device.
 
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Design system
 
 Midnight Indigo keeps the app focused and calm rather than overly bright:
@@ -161,6 +202,8 @@ Midnight Indigo keeps the app focused and calm rather than overly bright:
 | Muted text | `#93A4BF` | Supporting descriptions and metadata |
 
 The same palette is used in the interface, PWA manifest, browser theme color, and home-screen icon.
+
+<div align="right"><a href="#top">Back to top</a></div>
 
 ## Technology stack
 
@@ -207,7 +250,23 @@ flowchart TB
 - **Safe recovery:** backups and merge flows reduce the risk of losing a personal study plan.
 - **Mobile priority:** installability, responsive navigation, touch-sized controls, and offline-friendly behavior are part of the core experience.
 
+## Engineering principles
+
+| Principle | How the project applies it |
+| --- | --- |
+| Performance first | Small client-side app, static Vite build, and app-shell caching |
+| Safe by default | Local-only mode, explicit destructive-action confirmation, and no required account |
+| Progressive enhancement | Core planning works without cloud services; sync and reminders are optional |
+| Recoverable data | JSON export, import, merge, and visible cloud conflict summaries |
+| Accessible interaction | Semantic buttons, keyboard focus states, labels, and reduced-motion support |
+| Low operating cost | GitHub, Vercel Hobby, browser storage, and optional Supabase free tier |
+
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Project structure
+
+<details>
+<summary><strong>Expand the application map</strong></summary>
 
 ```text
 src/
@@ -227,6 +286,10 @@ docs/
 ├── preview-dashboard.png
 └── preview-mobile.png
 ```
+
+</details>
+
+<div align="right"><a href="#top">Back to top</a></div>
 
 ## Getting started
 
@@ -257,6 +320,8 @@ npm run preview
 
 The build generates the web manifest and service worker. The most accurate installation test uses the deployed HTTPS URL on Chrome Android or Safari iOS.
 
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Optional cloud sync
 
 The local-only experience works without any environment variables. To enable Supabase synchronization:
@@ -274,6 +339,8 @@ The local-only experience works without any environment variables. To enable Sup
 5. Restart Vite, open **Settings**, create an account, and select **Sync now**.
 
 The planner document is protected with Row Level Security. Never place a Supabase service-role or secret key in this frontend.
+
+<div align="right"><a href="#top">Back to top</a></div>
 
 ## Free deployment
 
@@ -294,6 +361,22 @@ Output directory: dist
 
 No paid domain, paid API, paid database plan, or app-store publication is required.
 
+### Deployment architecture
+
+```text
+                         push to master
+GitHub repository  ─────────────────────────►  Vercel Hobby
+        │                                           │
+        │ source control                            │ build + HTTPS
+        ▼                                           ▼
+  pull requests  ◄──────────────────────────  studyflow-pwa.vercel.app
+                                                    │
+                                                    ▼
+                                            Installable mobile PWA
+```
+
+<div align="right"><a href="#top">Back to top</a></div>
+
 ## Privacy and data
 
 Without Supabase configuration, tasks and sessions stay in the current browser. With optional cloud sync, only the signed-in user's planner document is stored in Supabase and protected by Row Level Security.
@@ -304,6 +387,8 @@ Settings includes:
 - Merge flows for restoring or combining planner data.
 - Explicit confirmation before clearing all local data.
 - Sign-in, sync, and sign-out controls for optional cloud mode.
+
+<div align="right"><a href="#top">Back to top</a></div>
 
 ## Project status
 
@@ -319,6 +404,8 @@ Settings includes:
 | Mobile install prompt | Complete |
 
 Possible future enhancements include richer per-record conflict resolution, background push notifications, automated end-to-end tests, and optional AI-assisted study planning.
+
+<div align="right"><a href="#top">Back to top</a></div>
 
 ## Contributing
 
