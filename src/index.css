@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-html { min-width: 320px; background: #0b0911; }
+html { min-width: 320px; background: #080b14; }
 body { min-width: 320px; margin: 0; }
 
 button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 
-button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(198, 153, 255, .78); outline-offset: 2px; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(124, 156, 255, .85); outline-offset: 2px; }
 
 input[type='date'], input[type='time'] { color-scheme: dark; }
 
